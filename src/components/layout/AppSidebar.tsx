@@ -7,12 +7,14 @@ import {
   PlusCircle,
   Settings,
   LogOut,
+  BarChart3,
 } from "lucide-react";
 
 const navigation = [
   { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
   { name: "Jobs", href: "/jobs", icon: Briefcase },
   { name: "Job Planning", href: "/planning", icon: CalendarDays },
+  { name: "Analytics", href: "/analytics", icon: BarChart3 },
   { name: "Create Job", href: "/create-job", icon: PlusCircle },
   { name: "Settings", href: "/settings", icon: Settings },
 ];
