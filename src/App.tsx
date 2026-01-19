@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Jobs from "./pages/Jobs";
 import JobDetails from "./pages/JobDetails";
+import JobPlanning from "./pages/JobPlanning";
 import CreateJob from "./pages/CreateJob";
 import Settings from "./pages/Settings";
 import CleanerJob from "./pages/CleanerJob";
@@ -30,6 +31,7 @@ const App = () => (
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/jobs" element={<Jobs />} />
             <Route path="/jobs/:id" element={<JobDetails />} />
+            <Route path="/planning" element={<JobPlanning />} />
             <Route path="/create-job" element={<CreateJob />} />
             <Route path="/settings" element={<Settings />} />
           </Route>

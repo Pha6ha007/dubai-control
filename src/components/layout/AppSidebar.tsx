@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import {
   LayoutDashboard,
   Briefcase,
+  CalendarDays,
   PlusCircle,
   Settings,
   LogOut,
@@ -11,6 +12,7 @@ import {
 const navigation = [
   { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
   { name: "Jobs", href: "/jobs", icon: Briefcase },
+  { name: "Job Planning", href: "/planning", icon: CalendarDays },
   { name: "Create Job", href: "/create-job", icon: PlusCircle },
   { name: "Settings", href: "/settings", icon: Settings },
 ];
