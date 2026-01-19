@@ -46,6 +46,20 @@
     --status-issue: 25 95% 53%;
     --status-issue-bg: 25 95% 95%;
 
+    /* Analytics colors - enterprise palette */
+    --analytics-primary: 221 83% 53%;
+    --analytics-primary-light: 221 83% 95%;
+    --analytics-success: 158 64% 42%;
+    --analytics-success-light: 158 64% 94%;
+    --analytics-warning: 38 92% 50%;
+    --analytics-warning-light: 38 92% 95%;
+    --analytics-danger: 0 72% 51%;
+    --analytics-danger-light: 0 72% 95%;
+    --analytics-neutral: 215 16% 47%;
+    --analytics-neutral-light: 210 40% 96%;
+    --analytics-accent: 262 83% 58%;
+    --analytics-accent-light: 262 83% 95%;
+
     /* Sidebar */
     --sidebar-background: 0 0% 100%;
     --sidebar-foreground: 222 47% 11%;
