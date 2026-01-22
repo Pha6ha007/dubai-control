@@ -63,32 +63,50 @@ const DemoRequest = () => {
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.4 }}
               >
-                {/* H1 */}
-                <h1 className="text-4xl md:text-5xl font-semibold text-primary-foreground mb-16 tracking-tight">
-                  Request a CleanProof demo
-                </h1>
+                {/* Top statement */}
+                <p className="text-primary-foreground/60 text-lg mb-6">
+                  If it's not proven, it didn't happen.
+                </p>
+
+                {/* Intro text */}
+                <div className="mb-12 space-y-4 text-primary-foreground/80 text-lg leading-relaxed">
+                  <p>
+                    This demo shows how CleanProof turns a cleaning job
+                    into verified proof — step by step, without shortcuts.
+                  </p>
+                  <p>
+                    You'll see the real workflow used by cleaning teams,
+                    from job creation to the final PDF report.
+                  </p>
+                </div>
 
                 {/* Expectation alignment block */}
-                <div className="mb-16 p-8 rounded-lg bg-primary-foreground/[0.03] border border-primary-foreground/10">
-                  <div className="space-y-6 text-primary-foreground/70 text-base leading-relaxed">
-                    <p className="text-primary-foreground/90 font-medium">
-                      CleanProof is a proof system — not a CRM.
+                <div className="mb-12 p-8 rounded-lg bg-primary-foreground/[0.03] border border-primary-foreground/10">
+                  <div className="space-y-5 text-primary-foreground/70 text-base leading-relaxed">
+                    <p className="text-primary-foreground/90">
+                      CleanProof is built to prove work — not to manage tasks.
                     </p>
                     <p>
-                      The workflow is fixed. Nothing can be skipped.
+                      The workflow is fixed. Every step is required.
                     </p>
                     <p>
-                      The demo shows the real process:<br />
+                      The demo covers the real process:<br />
                       <span className="text-primary-foreground/90">
                         job planning → on-site execution → verified PDF report.
                       </span>
                     </p>
-                    <p className="pt-2 border-t border-primary-foreground/10 text-primary-foreground/50">
-                      If you're looking for a flexible or customizable system,<br />
-                      CleanProof is not a good fit.
+                    <p className="text-primary-foreground/50">
+                      If you're looking for a highly flexible or customizable system,
+                      CleanProof may not be the right fit.
                     </p>
                   </div>
                 </div>
+
+                {/* Transition text */}
+                <p className="text-primary-foreground/60 text-base mb-10">
+                  If this approach makes sense for your business,
+                  you can request a demo below.
+                </p>
 
                 {/* Form */}
                 <form onSubmit={handleSubmit} className="space-y-8">
@@ -229,7 +247,7 @@ const DemoRequest = () => {
                 transition={{ duration: 0.4 }}
                 className="pt-16"
               >
-                <h1 className="text-4xl md:text-5xl font-semibold text-primary-foreground mb-8 tracking-tight">
+                <h1 className="text-3xl md:text-4xl font-semibold text-primary-foreground mb-8 tracking-tight">
                   Thanks.
                 </h1>
                 <div className="space-y-4 text-primary-foreground/70 text-lg leading-relaxed">
@@ -237,7 +255,7 @@ const DemoRequest = () => {
                     We'll review your request and contact you within one business day.
                   </p>
                   <p className="text-primary-foreground/50">
-                    Demos are conducted live and show the real product workflow.
+                    The demo is conducted live and shows the real product workflow.
                   </p>
                 </div>
               </motion.div>
