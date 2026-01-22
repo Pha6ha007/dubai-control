@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   return (
@@ -42,15 +43,25 @@ const HeroSection = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.8 }}
-          className="text-primary-foreground/50 text-lg md:text-xl max-w-md mx-auto mb-16"
+          className="text-primary-foreground/60 text-lg md:text-xl max-w-lg mx-auto mb-4"
         >
           Proof of work for cleaning teams.
+        </motion.p>
+        
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1 }}
+          className="text-primary-foreground/40 text-sm md:text-base max-w-md mx-auto mb-12"
+        >
+          GPS. Photos. Checklists. One verified report.
         </motion.p>
         
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.2 }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <Button 
             size="lg" 
@@ -58,6 +69,13 @@ const HeroSection = () => {
           >
             Request demo
           </Button>
+          
+          <Link 
+            to="/login" 
+            className="text-primary-foreground/60 hover:text-primary-foreground text-sm transition-colors"
+          >
+            Sign in →
+          </Link>
         </motion.div>
       </div>
       

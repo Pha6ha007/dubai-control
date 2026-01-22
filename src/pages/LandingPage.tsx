@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import HeroSection from "@/components/landing/HeroSection";
 import ProblemSection from "@/components/landing/ProblemSection";
 import SolutionSection from "@/components/landing/SolutionSection";
-import ProductRealitySection from "@/components/landing/ProductRealitySection";
+import ScrollShowcaseSection from "@/components/landing/ScrollShowcaseSection";
 import FAQSection from "@/components/landing/FAQSection";
 import CTASection from "@/components/landing/CTASection";
 
@@ -34,18 +34,18 @@ const LandingPage = () => {
         </div>
       </motion.header>
       
-      {/* Page sections - no spacer needed, hero is fullscreen */}
+      {/* Page sections */}
       <main className="overflow-hidden">
         <HeroSection />
         <ProblemSection />
         <SolutionSection />
-        <ProductRealitySection />
+        <ScrollShowcaseSection />
         <FAQSection />
         <CTASection />
       </main>
       
       {/* Minimal footer */}
-      <footer className="py-16 px-6 bg-foreground">
+      <footer className="py-16 px-6 bg-foreground border-t border-white/5">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8">
             <span className="text-primary-foreground font-semibold">CleanProof</span>
