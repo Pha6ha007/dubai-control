@@ -16,10 +16,10 @@ const CTASection = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1 }}
         >
-          <h2 className="text-display text-primary-foreground mb-6">
-            See how CleanProof works
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold mb-8">
+            <span className="text-white">See how CleanProof works</span>
             <br />
-            in real life.
+            <span className="text-primary">in real life.</span>
           </h2>
           
           <Button 
@@ -29,7 +29,7 @@ const CTASection = () => {
             Request demo
           </Button>
           
-          <p className="text-primary-foreground/40 text-sm">
+          <p className="text-slate-400 text-sm">
             No public signup. Demo only.
           </p>
         </motion.div>
