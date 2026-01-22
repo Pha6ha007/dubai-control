@@ -51,15 +51,28 @@ const DemoRequest = () => {
       </header>
 
       {/* Hero Section - Dark */}
-      <section className="bg-[hsl(220,25%,10%)] px-6 py-20 md:py-28">
-        <div className="max-w-3xl mx-auto text-center">
+      <section className="relative bg-foreground px-6 py-20 md:py-28 overflow-hidden">
+        {/* Subtle glow effect */}
+        <div className="absolute inset-0 gradient-glow opacity-50" />
+        
+        {/* Grid overlay - matching landing hero */}
+        <div 
+          className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage: `linear-gradient(hsl(var(--primary-foreground)) 1px, transparent 1px),
+                             linear-gradient(90deg, hsl(var(--primary-foreground)) 1px, transparent 1px)`,
+            backgroundSize: '100px 100px'
+          }}
+        />
+        
+        <div className="relative z-10 max-w-3xl mx-auto text-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] mb-8"
           >
-            <span className="text-white">If it's not proven</span>
+            <span className="text-primary-foreground">If it's not proven</span>
             <br />
             <span className="text-primary">it didn't happen.</span>
           </motion.h1>
@@ -67,7 +80,7 @@ const DemoRequest = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-xl md:text-2xl text-white/90 font-medium mb-4"
+            className="text-xl md:text-2xl text-primary-foreground/90 font-medium mb-4"
           >
             See how CleanProof works in a real cleaning job.
           </motion.p>
@@ -75,7 +88,7 @@ const DemoRequest = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-base md:text-lg text-white/50"
+            className="text-base md:text-lg text-primary-foreground/50"
           >
             From job creation to a verified PDF report — every step recorded, nothing skipped.
           </motion.p>
@@ -140,8 +153,21 @@ const DemoRequest = () => {
                 </div>
 
                 {/* Transition Section - Dark */}
-                <div className="bg-[hsl(220,25%,10%)] -mx-6 px-6 py-12 mb-8 text-center">
-                  <p className="text-xl md:text-2xl font-medium text-white/90">
+                <div className="relative bg-foreground -mx-6 px-6 py-12 mb-8 text-center overflow-hidden">
+                  {/* Subtle glow effect */}
+                  <div className="absolute inset-0 gradient-glow opacity-50" />
+                  
+                  {/* Grid overlay - matching hero */}
+                  <div 
+                    className="absolute inset-0 opacity-[0.03]"
+                    style={{
+                      backgroundImage: `linear-gradient(hsl(var(--primary-foreground)) 1px, transparent 1px),
+                                       linear-gradient(90deg, hsl(var(--primary-foreground)) 1px, transparent 1px)`,
+                      backgroundSize: '100px 100px'
+                    }}
+                  />
+                  
+                  <p className="relative z-10 text-xl md:text-2xl font-medium text-primary-foreground/90">
                     This is what verified work looks like.
                   </p>
                 </div>
