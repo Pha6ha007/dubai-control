@@ -14,6 +14,7 @@ import Analytics from "./pages/Analytics";
 import CreateJob from "./pages/CreateJob";
 import Settings from "./pages/Settings";
 import CleanerJob from "./pages/CleanerJob";
+import DemoRequest from "./pages/DemoRequest";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -27,6 +28,7 @@ const App = () => (
         <Routes>
           {/* Public routes */}
           <Route path="/" element={<LandingPage />} />
+          <Route path="/demo" element={<DemoRequest />} />
           <Route path="/login" element={<Login />} />
           
           {/* Protected routes with sidebar layout */}
