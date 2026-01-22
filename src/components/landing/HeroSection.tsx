@@ -54,7 +54,7 @@ const HeroSection = () => {
           transition={{ duration: 1, delay: 1 }}
           className="text-primary-foreground/40 text-sm md:text-base max-w-md mx-auto mb-12"
         >
-          GPS. Photos. Checklists. One verified report.
+          GPS. Photos. Checklists. One verified PDF report.
         </motion.p>
         
         <motion.div

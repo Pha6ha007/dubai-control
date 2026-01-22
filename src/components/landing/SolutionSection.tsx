@@ -30,7 +30,7 @@ const steps = [
   {
     number: "05",
     icon: FileText,
-    title: "PDF report generated",
+    title: "Verified PDF report generated",
     description: "One file. Complete proof.",
   },
 ];
