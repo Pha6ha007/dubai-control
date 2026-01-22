@@ -79,7 +79,7 @@ export function LocationMapPicker({ latitude, longitude, onLocationChange }: Loc
   }, [latitude, longitude, hasValidCoords]);
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-3">
       <p className="text-sm text-muted-foreground">
         Click on the map to set the location coordinates.
       </p>
@@ -88,6 +88,9 @@ export function LocationMapPicker({ latitude, longitude, onLocationChange }: Loc
         className="h-[300px] rounded-lg border border-border overflow-hidden"
         style={{ height: "300px", width: "100%" }}
       />
+      <p className="text-xs text-muted-foreground">
+        These coordinates will be used for cleaner navigation and GPS check-in validation.
+      </p>
     </div>
   );
 }

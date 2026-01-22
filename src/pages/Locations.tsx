@@ -2,7 +2,8 @@ import { useState } from "react";
 import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
 import { LocationForm } from "@/components/locations/LocationForm";
-import { sampleLocations, Location } from "@/data/locationsData";
+import { Location } from "@/data/locationsData";
+import { useLocations } from "@/contexts/LocationsContext";
 import {
   Table,
   TableBody,
@@ -11,18 +12,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
 import { Plus, ArrowLeft } from "lucide-react";
 
 type ViewMode = "list" | "create" | "edit";
 
 export default function Locations() {
-  const [locations, setLocations] = useState<Location[]>(sampleLocations);
+  const { locations, addLocation, updateLocation } = useLocations();
   const [viewMode, setViewMode] = useState<ViewMode>("list");
   const [selectedLocation, setSelectedLocation] = useState<Location | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -55,18 +50,9 @@ export default function Locations() {
 
     try {
       if (viewMode === "create") {
-        const newLocation: Location = {
-          ...data,
-          id: `loc-${Date.now()}`,
-          createdAt: new Date().toISOString().split("T")[0],
-        };
-        setLocations([...locations, newLocation]);
+        addLocation(data);
       } else if (viewMode === "edit" && selectedLocation) {
-        setLocations(
-          locations.map((loc) =>
-            loc.id === selectedLocation.id ? { ...loc, ...data } : loc
-          )
-        );
+        updateLocation(selectedLocation.id, data);
       }
       setViewMode("list");
       setSelectedLocation(null);
