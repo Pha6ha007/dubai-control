@@ -7,6 +7,9 @@ import SolutionSection from "@/components/landing/SolutionSection";
 import ScrollShowcaseSection from "@/components/landing/ScrollShowcaseSection";
 import FAQSection from "@/components/landing/FAQSection";
 import CTASection from "@/components/landing/CTASection";
+import TransitionSection1 from "@/components/landing/TransitionSection1";
+import TransitionSection2 from "@/components/landing/TransitionSection2";
+import TransitionSection3 from "@/components/landing/TransitionSection3";
 
 const LandingPage = () => {
   return (
@@ -38,9 +41,12 @@ const LandingPage = () => {
       <main className="overflow-hidden">
         <HeroSection />
         <ProblemSection />
+        <TransitionSection1 />
         <SolutionSection />
+        <TransitionSection2 />
         <ScrollShowcaseSection />
         <FAQSection />
+        <TransitionSection3 />
         <CTASection />
       </main>
       
