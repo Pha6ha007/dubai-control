@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import { MapContainer, TileLayer, Marker, useMapEvents, useMap } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
@@ -18,58 +17,77 @@ interface LocationMapPickerProps {
 }
 
 // Default to Dubai center
-const DUBAI_CENTER: [number, number] = [25.2048, 55.2708];
-
-function MapClickHandler({ onLocationChange }: { onLocationChange: (lat: number, lng: number) => void }) {
-  useMapEvents({
-    click: (e) => {
-      onLocationChange(e.latlng.lat, e.latlng.lng);
-    },
-  });
-  return null;
-}
-
-function MapCenterUpdater({ latitude, longitude }: { latitude: number | null; longitude: number | null }) {
-  const map = useMap();
-  const hasInitializedRef = useRef(false);
-
-  useEffect(() => {
-    if (latitude !== null && longitude !== null && !hasInitializedRef.current) {
-      map.setView([latitude, longitude], 15);
-      hasInitializedRef.current = true;
-    }
-  }, [latitude, longitude, map]);
-
-  return null;
-}
+const DUBAI_CENTER: L.LatLngExpression = [25.2048, 55.2708];
 
 export function LocationMapPicker({ latitude, longitude, onLocationChange }: LocationMapPickerProps) {
+  const mapContainerRef = useRef<HTMLDivElement>(null);
+  const mapRef = useRef<L.Map | null>(null);
+  const markerRef = useRef<L.Marker | null>(null);
+
   const hasValidCoords = latitude !== null && longitude !== null;
-  const center = hasValidCoords ? [latitude, longitude] as [number, number] : DUBAI_CENTER;
+  const center = hasValidCoords ? [latitude, longitude] as L.LatLngExpression : DUBAI_CENTER;
+
+  useEffect(() => {
+    if (!mapContainerRef.current || mapRef.current) return;
+
+    // Initialize map
+    const map = L.map(mapContainerRef.current).setView(center, hasValidCoords ? 15 : 11);
+    
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(map);
+
+    // Add marker if coordinates exist
+    if (hasValidCoords) {
+      markerRef.current = L.marker([latitude!, longitude!]).addTo(map);
+    }
+
+    // Handle map clicks
+    map.on("click", (e: L.LeafletMouseEvent) => {
+      const { lat, lng } = e.latlng;
+      
+      // Update or create marker
+      if (markerRef.current) {
+        markerRef.current.setLatLng([lat, lng]);
+      } else {
+        markerRef.current = L.marker([lat, lng]).addTo(map);
+      }
+      
+      onLocationChange(lat, lng);
+    });
+
+    mapRef.current = map;
+
+    return () => {
+      map.remove();
+      mapRef.current = null;
+      markerRef.current = null;
+    };
+  }, []); // Only run once on mount
+
+  // Update marker position when coordinates change externally
+  useEffect(() => {
+    if (!mapRef.current) return;
+
+    if (hasValidCoords) {
+      if (markerRef.current) {
+        markerRef.current.setLatLng([latitude!, longitude!]);
+      } else {
+        markerRef.current = L.marker([latitude!, longitude!]).addTo(mapRef.current);
+      }
+    }
+  }, [latitude, longitude, hasValidCoords]);
 
   return (
     <div className="space-y-2">
       <p className="text-sm text-muted-foreground">
         Click on the map to set the location coordinates.
       </p>
-      <div className="h-[300px] rounded-lg border border-border overflow-hidden">
-        <MapContainer
-          center={center}
-          zoom={hasValidCoords ? 15 : 11}
-          className="h-full w-full"
-          style={{ height: "100%", width: "100%" }}
-        >
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-          <MapClickHandler onLocationChange={onLocationChange} />
-          <MapCenterUpdater latitude={latitude} longitude={longitude} />
-          {hasValidCoords && (
-            <Marker position={[latitude!, longitude!]} />
-          )}
-        </MapContainer>
-      </div>
+      <div 
+        ref={mapContainerRef}
+        className="h-[300px] rounded-lg border border-border overflow-hidden"
+        style={{ height: "300px", width: "100%" }}
+      />
     </div>
   );
 }
