@@ -1,4 +1,6 @@
 import { Check, MapPin, Camera, Clock, FileText, ChevronRight, MoreHorizontal } from "lucide-react";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
 // Desktop Dashboard Mockup
 const DashboardMockup = () => (
@@ -282,74 +284,106 @@ const PDFMockup = () => (
 );
 
 const ScrollShowcaseSection = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
   return (
-    <section className="relative bg-foreground py-24 lg:py-32">
-      {/* Subtle background texture */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent opacity-50" />
+    <section ref={ref} className="relative bg-foreground">
+      {/* Subtle grid background - continuous across entire section */}
+      <div 
+        className="absolute inset-0 opacity-[0.03]" 
+        style={{
+          backgroundImage: `radial-gradient(circle at 1px 1px, hsl(var(--primary-foreground)) 1px, transparent 0)`,
+          backgroundSize: '48px 48px'
+        }}
+      />
       
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
-        {/* Section Header */}
-        <div className="text-center mb-20">
-          <p className="text-primary text-sm uppercase tracking-[0.2em] mb-4 font-medium">
-            Product Overview
-          </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white">
-            Everything in <span className="text-primary">one place</span>
-          </h2>
+      <div className="relative z-10">
+        {/* Transition Text - Integrated into section */}
+        <div className="min-h-[50vh] flex items-center justify-center px-6 pt-24 lg:pt-32 pb-16 lg:pb-24">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8 }}
+            className="max-w-4xl mx-auto text-center"
+          >
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight">
+              <span className="text-white">Every step leaves </span>
+              <span className="text-primary">evidence.</span>
+              <br />
+              <span className="text-white">Nothing can be skipped.</span>
+            </h2>
+          </motion.div>
         </div>
         
-        {/* Row 1: Manager Web Dashboard */}
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-24 lg:mb-32">
-          <div className="order-2 lg:order-1">
-            <p className="text-primary text-sm uppercase tracking-[0.15em] mb-4 font-medium">
-              Manager Dashboard
-            </p>
-            <h3 className="text-2xl md:text-3xl font-semibold text-white mb-4">
-              Plan, track, and verify all jobs
-            </h3>
-            <p className="text-slate-400 text-lg leading-relaxed">
-              See every job's status in real time. Open any completed job to view full proof — GPS, photos, checklist, and timestamps.
-            </p>
-          </div>
-          <div className="order-1 lg:order-2">
-            <DashboardMockup />
-          </div>
-        </div>
-        
-        {/* Row 2: Cleaner Mobile App */}
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-24 lg:mb-32">
-          <div className="flex justify-center lg:justify-start">
-            <MobileMockup />
-          </div>
-          <div>
-            <p className="text-primary text-sm uppercase tracking-[0.15em] mb-4 font-medium">
-              Cleaner Mobile App
-            </p>
-            <h3 className="text-2xl md:text-3xl font-semibold text-white mb-4">
-              A strict flow that can't be skipped
-            </h3>
-            <p className="text-slate-400 text-lg leading-relaxed">
-              Cleaners check in on site, capture before/after photos, complete a checklist, and check out. Every step is required — no shortcuts.
-            </p>
-          </div>
-        </div>
-        
-        {/* Row 3: PDF Report */}
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          <div className="order-2 lg:order-1">
-            <p className="text-primary text-sm uppercase tracking-[0.15em] mb-4 font-medium">
-              PDF Report
-            </p>
-            <h3 className="text-2xl md:text-3xl font-semibold text-white mb-4">
-              One PDF. All the proof you need.
-            </h3>
-            <p className="text-slate-400 text-lg leading-relaxed">
-              GPS coordinates, timestamped photos, completed checklist — everything in a single professional report ready to send to clients.
-            </p>
-          </div>
-          <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
-            <PDFMockup />
-          </div>
+        {/* Product Screenshots - Seamless continuation */}
+        <div className="max-w-7xl mx-auto px-6 pb-24 lg:pb-32">
+          {/* Row 1: Manager Web Dashboard */}
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-24 lg:mb-32"
+          >
+            <div className="order-2 lg:order-1">
+              <p className="text-primary text-sm uppercase tracking-[0.15em] mb-4 font-medium">
+                Manager Dashboard
+              </p>
+              <h3 className="text-2xl md:text-3xl font-semibold text-white mb-4">
+                Plan, track, and verify all jobs
+              </h3>
+              <p className="text-slate-400 text-lg leading-relaxed">
+                See every job's status in real time. Open any completed job to view full proof — GPS, photos, checklist, and timestamps.
+              </p>
+            </div>
+            <div className="order-1 lg:order-2">
+              <DashboardMockup />
+            </div>
+          </motion.div>
+          {/* Row 2: Cleaner Mobile App */}
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-24 lg:mb-32"
+          >
+            <div className="flex justify-center lg:justify-start">
+              <MobileMockup />
+            </div>
+            <div>
+              <p className="text-primary text-sm uppercase tracking-[0.15em] mb-4 font-medium">
+                Cleaner Mobile App
+              </p>
+              <h3 className="text-2xl md:text-3xl font-semibold text-white mb-4">
+                A strict flow that can't be skipped
+              </h3>
+              <p className="text-slate-400 text-lg leading-relaxed">
+                Cleaners check in on site, capture before/after photos, complete a checklist, and check out. Every step is required — no shortcuts.
+              </p>
+            </div>
+          </motion.div>
+          {/* Row 3: PDF Report */}
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center"
+          >
+            <div className="order-2 lg:order-1">
+              <p className="text-primary text-sm uppercase tracking-[0.15em] mb-4 font-medium">
+                PDF Report
+              </p>
+              <h3 className="text-2xl md:text-3xl font-semibold text-white mb-4">
+                One PDF. All the proof you need.
+              </h3>
+              <p className="text-slate-400 text-lg leading-relaxed">
+                GPS coordinates, timestamped photos, completed checklist — everything in a single professional report ready to send to clients.
+              </p>
+            </div>
+            <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
+              <PDFMockup />
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
