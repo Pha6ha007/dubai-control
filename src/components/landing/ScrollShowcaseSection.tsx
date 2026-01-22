@@ -1,40 +1,8 @@
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
 import { Check, MapPin, Camera, Clock, FileText, ChevronRight, MoreHorizontal } from "lucide-react";
-
-const showcaseSteps = [
-  {
-    id: "dashboard",
-    title: "Manager Web Dashboard",
-    items: [
-      "Plan and track all jobs in one place",
-      "See job status in real time",
-      "Open any job and view full proof",
-    ],
-  },
-  {
-    id: "mobile",
-    title: "Cleaner Mobile App",
-    items: [
-      "Cleaners follow a strict flow",
-      "No steps can be skipped",
-      "Proof is captured on site",
-    ],
-  },
-  {
-    id: "pdf",
-    title: "PDF Report",
-    items: [
-      "One PDF. All proof.",
-      "GPS coordinates, photos, checklist, timestamps",
-      "Ready to send to clients",
-    ],
-  },
-];
 
 // Desktop Dashboard Mockup
 const DashboardMockup = () => (
-  <div className="relative w-full max-w-2xl">
+  <div className="relative w-full max-w-xl">
     {/* Browser Frame */}
     <div className="bg-[hsl(222,47%,15%)] rounded-xl overflow-hidden shadow-2xl border border-white/10">
       {/* Browser Header */}
@@ -126,24 +94,18 @@ const DashboardMockup = () => (
 
 // Mobile App Mockup
 const MobileMockup = () => (
-  <div className="relative mx-auto" style={{ width: 280 }}>
+  <div className="relative mx-auto" style={{ width: 260 }}>
     {/* iPhone Frame */}
     <div className="relative bg-[hsl(222,47%,8%)] rounded-[3rem] p-3 shadow-2xl">
       {/* Dynamic Island */}
-      <div className="absolute top-4 left-1/2 -translate-x-1/2 w-24 h-7 bg-black rounded-full z-10" />
+      <div className="absolute top-4 left-1/2 -translate-x-1/2 w-20 h-6 bg-black rounded-full z-10" />
       
       {/* Screen */}
-      <div className="bg-[hsl(210,20%,98%)] rounded-[2.25rem] overflow-hidden relative" style={{ height: 520 }}>
+      <div className="bg-[hsl(210,20%,98%)] rounded-[2.25rem] overflow-hidden relative" style={{ height: 480 }}>
         {/* Status Bar */}
-        <div className="flex items-center justify-between px-6 pt-14 pb-2">
+        <div className="flex items-center justify-between px-6 pt-12 pb-2">
           <span className="text-xs font-medium text-foreground">9:41</span>
           <div className="flex items-center gap-1">
-            <div className="w-4 h-2 flex gap-px">
-              <div className="w-0.5 h-full bg-foreground rounded-sm" />
-              <div className="w-0.5 h-full bg-foreground rounded-sm" />
-              <div className="w-0.5 h-full bg-foreground rounded-sm" />
-              <div className="w-0.5 h-full bg-foreground/30 rounded-sm" />
-            </div>
             <div className="w-6 h-3 border border-foreground rounded-sm relative">
               <div className="absolute inset-0.5 bg-foreground rounded-sm" style={{ width: '70%' }} />
             </div>
@@ -212,7 +174,7 @@ const MobileMockup = () => (
         </div>
         
         {/* Bottom Nav */}
-        <div className="absolute bottom-0 left-0 right-0 px-8 pb-8 pt-3 bg-white border-t border-border/50">
+        <div className="absolute bottom-0 left-0 right-0 px-6 pb-6 pt-3 bg-white border-t border-border/50">
           <div className="flex justify-around">
             <div className="text-center">
               <div className="w-6 h-6 mx-auto bg-primary/10 rounded-lg flex items-center justify-center">
@@ -241,180 +203,152 @@ const MobileMockup = () => (
 
 // PDF Report Mockup
 const PDFMockup = () => (
-  <div className="relative w-full max-w-md mx-auto">
+  <div className="relative w-full max-w-sm mx-auto">
     {/* PDF Shadow/Depth */}
     <div className="absolute inset-0 bg-primary/20 rounded-lg transform rotate-1 scale-[0.98] blur-xl" />
     
     {/* PDF Document */}
     <div className="relative bg-white rounded-lg shadow-2xl overflow-hidden border border-border">
       {/* PDF Header */}
-      <div className="bg-gradient-to-r from-primary to-primary/80 px-6 py-4">
+      <div className="bg-gradient-to-r from-primary to-primary/80 px-5 py-3">
         <div className="flex items-center justify-between">
           <div>
             <h4 className="text-white font-semibold text-sm">Job Completion Report</h4>
             <p className="text-white/70 text-xs">CleanProof Verified</p>
           </div>
-          <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
-            <Check className="w-6 h-6 text-white" />
+          <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center">
+            <Check className="w-5 h-5 text-white" />
           </div>
         </div>
       </div>
       
       {/* PDF Content */}
-      <div className="p-6 space-y-4">
+      <div className="p-5 space-y-3">
         {/* Job Info */}
-        <div className="grid grid-cols-2 gap-4 pb-4 border-b border-border">
+        <div className="grid grid-cols-2 gap-3 pb-3 border-b border-border">
           <div>
             <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Location</p>
-            <p className="text-sm font-medium text-foreground">Marina Tower #401</p>
+            <p className="text-xs font-medium text-foreground">Marina Tower #401</p>
           </div>
           <div>
             <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Date</p>
-            <p className="text-sm font-medium text-foreground">Jan 22, 2025</p>
+            <p className="text-xs font-medium text-foreground">Jan 22, 2025</p>
           </div>
           <div>
             <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Cleaner</p>
-            <p className="text-sm font-medium text-foreground">Ahmed M.</p>
+            <p className="text-xs font-medium text-foreground">Ahmed M.</p>
           </div>
           <div>
             <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Duration</p>
-            <p className="text-sm font-medium text-foreground">2h 15m</p>
+            <p className="text-xs font-medium text-foreground">2h 15m</p>
           </div>
         </div>
         
         {/* GPS Verification */}
-        <div className="flex items-center gap-3 p-3 bg-green-50 rounded-lg">
-          <MapPin className="w-5 h-5 text-green-600" />
+        <div className="flex items-center gap-2 p-2 bg-green-50 rounded-lg">
+          <MapPin className="w-4 h-4 text-green-600" />
           <div>
-            <p className="text-xs font-medium text-green-800">GPS Verified</p>
-            <p className="text-[10px] text-green-600">25.0657° N, 55.1713° E</p>
-          </div>
-        </div>
-        
-        {/* Times */}
-        <div className="grid grid-cols-2 gap-3">
-          <div className="p-3 bg-muted/50 rounded-lg">
-            <p className="text-[10px] text-muted-foreground">Check-in</p>
-            <p className="text-sm font-semibold text-foreground">09:02 AM</p>
-          </div>
-          <div className="p-3 bg-muted/50 rounded-lg">
-            <p className="text-[10px] text-muted-foreground">Check-out</p>
-            <p className="text-sm font-semibold text-foreground">11:17 AM</p>
+            <p className="text-[10px] font-medium text-green-800">GPS Verified</p>
+            <p className="text-[9px] text-green-600">25.0657° N, 55.1713° E</p>
           </div>
         </div>
         
         {/* Photo Grid */}
         <div>
           <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-2">Photos (6)</p>
-          <div className="grid grid-cols-3 gap-2">
+          <div className="grid grid-cols-3 gap-1.5">
             {[1, 2, 3, 4, 5, 6].map((i) => (
-              <div key={i} className="aspect-square bg-muted rounded-md flex items-center justify-center">
-                <Camera className="w-4 h-4 text-muted-foreground/50" />
+              <div key={i} className="aspect-square bg-muted rounded flex items-center justify-center">
+                <Camera className="w-3 h-3 text-muted-foreground/50" />
               </div>
             ))}
           </div>
         </div>
         
         {/* Checklist Summary */}
-        <div className="flex items-center justify-between p-3 bg-muted/50 rounded-lg">
-          <span className="text-xs text-muted-foreground">Checklist completed</span>
-          <span className="text-sm font-semibold text-green-600">12/12 items</span>
+        <div className="flex items-center justify-between p-2 bg-muted/50 rounded-lg">
+          <span className="text-[10px] text-muted-foreground">Checklist completed</span>
+          <span className="text-xs font-semibold text-green-600">12/12 items</span>
         </div>
       </div>
       
       {/* PDF Footer */}
-      <div className="px-6 py-3 bg-muted/30 border-t border-border flex items-center justify-between">
-        <span className="text-[10px] text-muted-foreground">Generated by CleanProof</span>
-        <span className="text-[10px] text-muted-foreground">Page 1 of 2</span>
+      <div className="px-5 py-2 bg-muted/30 border-t border-border flex items-center justify-between">
+        <span className="text-[9px] text-muted-foreground">Generated by CleanProof</span>
+        <span className="text-[9px] text-muted-foreground">Page 1 of 2</span>
       </div>
     </div>
   </div>
 );
 
 const ScrollShowcaseSection = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
-
-  // Calculate which step is active based on scroll progress
-  // Divide into 3 equal sections for 3 steps
-  const step1Opacity = useTransform(scrollYProgress, [0, 0.15, 0.33, 0.4], [1, 1, 1, 0]);
-  const step2Opacity = useTransform(scrollYProgress, [0.3, 0.4, 0.66, 0.73], [0, 1, 1, 0]);
-  const step3Opacity = useTransform(scrollYProgress, [0.63, 0.73, 1], [0, 1, 1]);
-
   return (
-    <section 
-      ref={containerRef} 
-      className="relative bg-foreground" 
-      style={{ height: "200vh" }}
-    >
-      {/* Sticky Container */}
-      <div className="sticky top-0 h-screen flex items-center overflow-hidden">
-        {/* Subtle background glow */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 opacity-50" />
+    <section className="relative bg-foreground py-24 lg:py-32">
+      {/* Subtle background texture */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent opacity-50" />
+      
+      <div className="relative z-10 max-w-7xl mx-auto px-6">
+        {/* Section Header */}
+        <div className="text-center mb-20">
+          <p className="text-primary text-sm uppercase tracking-[0.2em] mb-4 font-medium">
+            Product Overview
+          </p>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white">
+            Everything in <span className="text-primary">one place</span>
+          </h2>
+        </div>
         
-        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            {/* Left: Text Content */}
-            <div className="relative h-[350px] lg:h-[400px]">
-              {showcaseSteps.map((step, index) => {
-                const opacity = index === 0 ? step1Opacity : index === 1 ? step2Opacity : step3Opacity;
-                
-                return (
-                  <motion.div
-                    key={step.id}
-                    style={{ opacity }}
-                    className="absolute inset-0 flex flex-col justify-center"
-                  >
-                    {/* Section label - light gray, uppercase */}
-                    <p className="text-slate-400 text-sm uppercase tracking-[0.2em] mb-6 font-medium">
-                      {step.title}
-                    </p>
-                    
-                    {/* Main content items - pure white */}
-                    <div className="space-y-5">
-                      {step.items.map((item, i) => (
-                        <p
-                          key={i}
-                          className="text-xl md:text-2xl lg:text-3xl font-medium text-white leading-snug"
-                        >
-                          {item}
-                        </p>
-                      ))}
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
-            
-            {/* Right: Visual Content - Sticky */}
-            <div className="relative h-[450px] lg:h-[550px] flex items-center justify-center">
-              {/* Dashboard */}
-              <motion.div
-                style={{ opacity: step1Opacity }}
-                className="absolute inset-0 flex items-center justify-center pointer-events-none"
-              >
-                <DashboardMockup />
-              </motion.div>
-              
-              {/* Mobile */}
-              <motion.div
-                style={{ opacity: step2Opacity }}
-                className="absolute inset-0 flex items-center justify-center pointer-events-none"
-              >
-                <MobileMockup />
-              </motion.div>
-              
-              {/* PDF */}
-              <motion.div
-                style={{ opacity: step3Opacity }}
-                className="absolute inset-0 flex items-center justify-center pointer-events-none"
-              >
-                <PDFMockup />
-              </motion.div>
-            </div>
+        {/* Row 1: Manager Web Dashboard */}
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-24 lg:mb-32">
+          <div className="order-2 lg:order-1">
+            <p className="text-primary text-sm uppercase tracking-[0.15em] mb-4 font-medium">
+              Manager Dashboard
+            </p>
+            <h3 className="text-2xl md:text-3xl font-semibold text-white mb-4">
+              Plan, track, and verify all jobs
+            </h3>
+            <p className="text-slate-400 text-lg leading-relaxed">
+              See every job's status in real time. Open any completed job to view full proof — GPS, photos, checklist, and timestamps.
+            </p>
+          </div>
+          <div className="order-1 lg:order-2">
+            <DashboardMockup />
+          </div>
+        </div>
+        
+        {/* Row 2: Cleaner Mobile App */}
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-24 lg:mb-32">
+          <div className="flex justify-center lg:justify-start">
+            <MobileMockup />
+          </div>
+          <div>
+            <p className="text-primary text-sm uppercase tracking-[0.15em] mb-4 font-medium">
+              Cleaner Mobile App
+            </p>
+            <h3 className="text-2xl md:text-3xl font-semibold text-white mb-4">
+              A strict flow that can't be skipped
+            </h3>
+            <p className="text-slate-400 text-lg leading-relaxed">
+              Cleaners check in on site, capture before/after photos, complete a checklist, and check out. Every step is required — no shortcuts.
+            </p>
+          </div>
+        </div>
+        
+        {/* Row 3: PDF Report */}
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div className="order-2 lg:order-1">
+            <p className="text-primary text-sm uppercase tracking-[0.15em] mb-4 font-medium">
+              PDF Report
+            </p>
+            <h3 className="text-2xl md:text-3xl font-semibold text-white mb-4">
+              One PDF. All the proof you need.
+            </h3>
+            <p className="text-slate-400 text-lg leading-relaxed">
+              GPS coordinates, timestamped photos, completed checklist — everything in a single professional report ready to send to clients.
+            </p>
+          </div>
+          <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
+            <PDFMockup />
           </div>
         </div>
       </div>
