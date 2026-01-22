@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
 import HeroSection from "@/components/landing/HeroSection";
 import ProblemSection from "@/components/landing/ProblemSection";
 import SolutionSection from "@/components/landing/SolutionSection";
@@ -10,26 +11,31 @@ import CTASection from "@/components/landing/CTASection";
 const LandingPage = () => {
   return (
     <div className="min-h-screen bg-background">
-      {/* Minimal header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <Link to="/" className="text-lg font-semibold text-foreground">
+      {/* Minimal header - transparent on dark hero */}
+      <motion.header 
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.5 }}
+        className="fixed top-0 left-0 right-0 z-50 bg-transparent"
+      >
+        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+          <Link to="/" className="text-lg font-semibold text-primary-foreground">
             CleanProof
           </Link>
           
           <Link to="/login">
-            <Button variant="ghost" className="text-muted-foreground hover:text-foreground">
+            <Button 
+              variant="ghost" 
+              className="text-primary-foreground/70 hover:text-primary-foreground hover:bg-primary-foreground/10"
+            >
               Sign in
             </Button>
           </Link>
         </div>
-      </header>
+      </motion.header>
       
-      {/* Spacer for fixed header */}
-      <div className="h-16" />
-      
-      {/* Page sections */}
-      <main>
+      {/* Page sections - no spacer needed, hero is fullscreen */}
+      <main className="overflow-hidden">
         <HeroSection />
         <ProblemSection />
         <SolutionSection />
@@ -39,16 +45,19 @@ const LandingPage = () => {
       </main>
       
       {/* Minimal footer */}
-      <footer className="py-12 px-6 border-t border-border/50">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} CleanProof. Built for UAE cleaning operations.
-          </p>
-          <div className="flex items-center gap-6">
-            <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+      <footer className="py-16 px-6 bg-foreground">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8">
+            <span className="text-primary-foreground font-semibold">CleanProof</span>
+            <p className="text-sm text-primary-foreground/40">
+              Built for UAE cleaning operations.
+            </p>
+          </div>
+          <div className="flex items-center gap-8">
+            <a href="#" className="text-sm text-primary-foreground/40 hover:text-primary-foreground transition-colors">
               Privacy
             </a>
-            <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <a href="#" className="text-sm text-primary-foreground/40 hover:text-primary-foreground transition-colors">
               Terms
             </a>
           </div>

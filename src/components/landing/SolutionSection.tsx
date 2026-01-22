@@ -1,66 +1,75 @@
-import { MapPin, Camera, CheckSquare, FileText } from "lucide-react";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
 const steps = [
   {
-    number: "1",
-    icon: MapPin,
+    number: "01",
     title: "Check in on site",
-    description: "Cleaner arrives and checks in with GPS verification",
+    description: "GPS verification confirms presence",
   },
   {
-    number: "2",
-    icon: Camera,
+    number: "02",
     title: "Before & after photos",
-    description: "Visual proof captured with timestamps",
+    description: "Timestamped visual evidence",
   },
   {
-    number: "3",
-    icon: CheckSquare,
+    number: "03",
     title: "Complete checklist",
-    description: "Every task marked as done",
+    description: "Every task accounted for",
   },
   {
-    number: "4",
-    icon: FileText,
+    number: "04",
     title: "PDF report generated",
-    description: "Manager receives complete proof of work",
+    description: "One file. Complete proof.",
   },
 ];
 
 const SolutionSection = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
   return (
-    <section className="py-24 px-6">
-      <div className="max-w-4xl mx-auto">
-        <p className="text-sm text-muted-foreground uppercase tracking-wide mb-4">
-          How it works
-        </p>
+    <section ref={ref} className="relative py-32 md:py-48 px-6 bg-muted/50">
+      <div className="max-w-6xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-24 md:mb-32"
+        >
+          <p className="text-muted-foreground text-sm uppercase tracking-[0.2em] mb-6">
+            The solution
+          </p>
+          <h2 className="text-display text-foreground">
+            Control, not chaos.
+          </h2>
+        </motion.div>
         
-        <h2 className="text-3xl md:text-4xl font-semibold text-foreground mb-16">
-          Simple, clear process
-        </h2>
-        
-        <div className="relative">
-          {/* Connecting line */}
-          <div className="absolute left-6 top-12 bottom-12 w-px bg-border hidden md:block" />
-          
-          <div className="space-y-12 md:space-y-16">
-            {steps.map((step, index) => (
-              <div 
-                key={index} 
-                className="flex items-start gap-6 md:gap-8 animate-fade-in"
-                style={{ animationDelay: `${index * 150}ms` }}
-              >
-                <div className="relative flex-shrink-0">
-                  <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center">
-                    <step.icon className="w-5 h-5 text-primary" />
-                  </div>
-                  <span className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs font-medium flex items-center justify-center">
-                    {step.number}
-                  </span>
-                </div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
+          {steps.map((step, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 40 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ 
+                duration: 0.8, 
+                delay: 0.2 + index * 0.15,
+                ease: [0.25, 0.1, 0.25, 1]
+              }}
+              className="relative group"
+            >
+              {/* Connector line */}
+              {index < steps.length - 1 && (
+                <div className="hidden lg:block absolute top-8 left-full w-full h-px bg-border/50 -translate-x-3" />
+              )}
+              
+              <div className="relative p-8 rounded-2xl bg-background border border-border/50 hover:border-primary/30 hover:shadow-soft transition-all duration-500">
+                <span className="text-6xl font-bold text-muted/50 absolute top-4 right-6">
+                  {step.number}
+                </span>
                 
-                <div className="pt-1">
-                  <h3 className="text-xl font-semibold text-foreground mb-2">
+                <div className="relative z-10 pt-12">
+                  <h3 className="text-xl font-semibold text-foreground mb-3">
                     {step.title}
                   </h3>
                   <p className="text-muted-foreground">
@@ -68,8 +77,8 @@ const SolutionSection = () => {
                   </p>
                 </div>
               </div>
-            ))}
-          </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

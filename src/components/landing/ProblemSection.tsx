@@ -1,46 +1,55 @@
-import { AlertCircle, MessageSquareWarning, ImageOff, FileX } from "lucide-react";
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
 
 const problems = [
-  {
-    icon: AlertCircle,
-    text: "No proof cleaners were on site",
-  },
-  {
-    icon: MessageSquareWarning,
-    text: "Disputes with clients after jobs",
-  },
-  {
-    icon: ImageOff,
-    text: "WhatsApp photos ≠ evidence",
-  },
-  {
-    icon: FileX,
-    text: "No single report of completed work",
-  },
+  "Cleaners say they were there.",
+  "Clients say they weren't.",
+  "Photos are sent in WhatsApp.",
+  "There is no proof."
 ];
 
 const ProblemSection = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
   return (
-    <section className="py-24 px-6 bg-muted/30">
-      <div className="max-w-3xl mx-auto">
-        <p className="text-sm text-muted-foreground uppercase tracking-wide mb-12">
+    <section ref={ref} className="relative py-32 md:py-48 px-6 bg-background overflow-hidden">
+      {/* Subtle texture */}
+      <div className="absolute inset-0 opacity-[0.02]" 
+        style={{
+          backgroundImage: `radial-gradient(circle at 1px 1px, hsl(var(--foreground)) 1px, transparent 0)`,
+          backgroundSize: '40px 40px'
+        }}
+      />
+      
+      <div className="max-w-5xl mx-auto">
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.8 }}
+          className="text-muted-foreground text-sm uppercase tracking-[0.2em] mb-24 md:mb-32"
+        >
           The problem
-        </p>
+        </motion.p>
         
-        <div className="space-y-8">
+        <div className="space-y-8 md:space-y-12">
           {problems.map((problem, index) => (
-            <div 
-              key={index} 
-              className="flex items-start gap-5 animate-fade-in"
-              style={{ animationDelay: `${index * 100}ms` }}
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, x: -40 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ 
+                duration: 0.8, 
+                delay: 0.3 + index * 0.2,
+                ease: [0.25, 0.1, 0.25, 1]
+              }}
+              className={`${index % 2 === 1 ? 'md:ml-24' : ''} ${index === 3 ? 'md:ml-48' : ''}`}
             >
-              <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-background border border-border flex items-center justify-center">
-                <problem.icon className="w-5 h-5 text-muted-foreground" />
-              </div>
-              <p className="text-xl md:text-2xl text-foreground font-medium pt-1.5">
-                {problem.text}
+              <p className={`text-statement ${index === 3 ? 'text-primary font-semibold' : 'text-foreground/80'}`}>
+                {problem}
               </p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
