@@ -371,13 +371,13 @@ const ScrollShowcaseSection = () => {
           >
             <div className="order-2 lg:order-1">
               <p className="text-primary text-sm uppercase tracking-[0.15em] mb-4 font-medium">
-                PDF Report
+                Verified PDF Report
               </p>
               <h3 className="text-2xl md:text-3xl font-semibold text-white mb-4">
                 One PDF. All the proof you need.
               </h3>
               <p className="text-slate-400 text-lg leading-relaxed">
-                GPS coordinates, timestamped photos, completed checklist — everything in a single professional report ready to send to clients.
+                Verified GPS location, immutable timestamps, and confirmed checklist completion — captured as permanent record. This report is the final source of truth.
               </p>
             </div>
             <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
