@@ -305,6 +305,16 @@ const DemoRequest = () => {
                     </div>
                   </form>
                 </div>
+
+                {/* Back link */}
+                <div className="text-center mt-6">
+                  <Link
+                    to="/"
+                    className="inline-flex items-center text-sm text-gray-400 hover:text-gray-900 transition-colors"
+                  >
+                    ← Back to CleanProof overview
+                  </Link>
+                </div>
               </motion.div>
             ) : (
               <motion.div
