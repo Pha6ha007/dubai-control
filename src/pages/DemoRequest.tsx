@@ -50,6 +50,38 @@ const DemoRequest = () => {
         </div>
       </header>
 
+      {/* Hero Section - Dark */}
+      <section className="bg-[hsl(220,25%,10%)] px-6 py-20 md:py-28">
+        <div className="max-w-3xl mx-auto text-center">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] mb-8"
+          >
+            <span className="text-white">If it's not proven</span>
+            <br />
+            <span className="text-primary">it didn't happen.</span>
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-xl md:text-2xl text-white/90 font-medium mb-4"
+          >
+            See how CleanProof works in a real cleaning job.
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-base md:text-lg text-white/50"
+          >
+            From job creation to a verified PDF report — every step recorded, nothing skipped.
+          </motion.p>
+        </div>
+      </section>
+
       {/* Main Content */}
       <main className="px-6 py-16">
         <div className="max-w-3xl mx-auto">
@@ -62,18 +94,6 @@ const DemoRequest = () => {
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.4 }}
               >
-                {/* Hero Section */}
-                <div className="text-center mb-12">
-                  <h1 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-4 tracking-tight">
-                    See how CleanProof works in a real cleaning job
-                  </h1>
-                  <p className="text-lg text-gray-600 mb-6">
-                    From job creation to a verified PDF report — every step recorded, nothing skipped.
-                  </p>
-                  <p className="text-sm text-gray-400">
-                    If it's not proven, it didn't happen.
-                  </p>
-                </div>
 
                 {/* What this demo shows - White card */}
                 <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-100 mb-8">
@@ -119,10 +139,12 @@ const DemoRequest = () => {
                   </div>
                 </div>
 
-                {/* Transition text */}
-                <p className="text-center text-gray-500 mb-8">
-                  If this approach makes sense for your business, you can request a live demo below.
-                </p>
+                {/* Transition Section - Dark */}
+                <div className="bg-[hsl(220,25%,10%)] -mx-6 px-6 py-12 mb-8 text-center">
+                  <p className="text-xl md:text-2xl font-medium text-white/90">
+                    This is what verified work looks like.
+                  </p>
+                </div>
 
                 {/* Form - White card */}
                 <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-100">
