@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { LocationMapPicker } from "./LocationMapPicker";
 import { Location } from "@/data/locationsData";
-import { AlertCircle } from "lucide-react";
+import { AlertCircle, Loader2 } from "lucide-react";
 
 interface LocationFormProps {
   location?: Location | null;
@@ -23,6 +24,7 @@ interface FormErrors {
 }
 
 export function LocationForm({ location, onSave, onCancel, isLoading, apiError }: LocationFormProps) {
+  const navigate = useNavigate();
   const [name, setName] = useState(location?.name || "");
   const [address, setAddress] = useState(location?.address || "");
   const [latitude, setLatitude] = useState<string>(location?.latitude?.toString() || "");
@@ -87,6 +89,13 @@ export function LocationForm({ location, onSave, onCancel, isLoading, apiError }
     // Clear any coordinate errors when user picks from map
     setErrors((prev) => ({ ...prev, latitude: undefined, longitude: undefined }));
   };
+
+  // Check if form can be submitted (all required fields filled)
+  const isFormValid = 
+    name.trim().length > 0 && 
+    address.trim().length > 0 && 
+    latitude.trim().length > 0 && 
+    longitude.trim().length > 0;
 
   const parsedLat = latitude ? parseFloat(latitude) : null;
   const parsedLng = longitude ? parseFloat(longitude) : null;
@@ -176,10 +185,17 @@ export function LocationForm({ location, onSave, onCancel, isLoading, apiError }
       />
 
       <div className="flex items-center gap-3 pt-4">
-        <Button type="submit" disabled={isLoading}>
-          {isLoading ? "Saving..." : "Save"}
+        <Button type="submit" disabled={isLoading || !isFormValid}>
+          {isLoading ? (
+            <>
+              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+              Saving...
+            </>
+          ) : (
+            "Save"
+          )}
         </Button>
-        <Button type="button" variant="outline" onClick={onCancel}>
+        <Button type="button" variant="outline" onClick={() => navigate("/locations")}>
           Cancel
         </Button>
       </div>

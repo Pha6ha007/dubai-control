@@ -10,11 +10,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { locations, cleaners } from "@/data/sampleData";
+import { cleaners } from "@/data/sampleData";
+import { useLocations } from "@/contexts/LocationsContext";
 import { ArrowLeft } from "lucide-react";
 
 export default function CreateJob() {
   const navigate = useNavigate();
+  const { locations } = useLocations();
   const [isLoading, setIsLoading] = useState(false);
 
   const [formData, setFormData] = useState({
@@ -79,7 +81,7 @@ export default function CreateJob() {
                   <SelectTrigger className="h-11 bg-background border-border">
                     <SelectValue placeholder="Select location" />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="bg-popover">
                     {locations.map((loc) => (
                       <SelectItem key={loc.id} value={loc.id}>
                         {loc.name}
