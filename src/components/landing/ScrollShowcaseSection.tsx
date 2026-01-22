@@ -133,7 +133,7 @@ const MobileMockup = () => (
       <div className="absolute top-4 left-1/2 -translate-x-1/2 w-24 h-7 bg-black rounded-full z-10" />
       
       {/* Screen */}
-      <div className="bg-[hsl(210,20%,98%)] rounded-[2.25rem] overflow-hidden">
+      <div className="bg-[hsl(210,20%,98%)] rounded-[2.25rem] overflow-hidden relative" style={{ height: 520 }}>
         {/* Status Bar */}
         <div className="flex items-center justify-between px-6 pt-14 pb-2">
           <span className="text-xs font-medium text-foreground">9:41</span>
@@ -243,15 +243,10 @@ const MobileMockup = () => (
 const PDFMockup = () => (
   <div className="relative w-full max-w-md mx-auto">
     {/* PDF Shadow/Depth */}
-    <div 
-      className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent rounded-lg transform rotate-2 scale-[0.98] blur-xl"
-    />
+    <div className="absolute inset-0 bg-primary/20 rounded-lg transform rotate-1 scale-[0.98] blur-xl" />
     
     {/* PDF Document */}
-    <div 
-      className="relative bg-white rounded-lg shadow-2xl overflow-hidden border border-border"
-      style={{ transform: 'perspective(1000px) rotateY(-5deg)' }}
-    >
+    <div className="relative bg-white rounded-lg shadow-2xl overflow-hidden border border-border">
       {/* PDF Header */}
       <div className="bg-gradient-to-r from-primary to-primary/80 px-6 py-4">
         <div className="flex items-center justify-between">
@@ -343,25 +338,27 @@ const ScrollShowcaseSection = () => {
     offset: ["start start", "end end"],
   });
 
-  // Transform progress to step index
-  const step1Opacity = useTransform(scrollYProgress, [0, 0.2, 0.3], [1, 1, 0]);
-  const step2Opacity = useTransform(scrollYProgress, [0.25, 0.35, 0.55, 0.65], [0, 1, 1, 0]);
-  const step3Opacity = useTransform(scrollYProgress, [0.6, 0.7, 1], [0, 1, 1]);
-
-  const step1Scale = useTransform(scrollYProgress, [0, 0.2, 0.3], [1, 1, 0.95]);
-  const step2Scale = useTransform(scrollYProgress, [0.25, 0.35, 0.55, 0.65], [0.95, 1, 1, 0.95]);
-  const step3Scale = useTransform(scrollYProgress, [0.6, 0.7, 1], [0.95, 1, 1]);
+  // Calculate which step is active based on scroll progress
+  // Divide into 3 equal sections for 3 steps
+  const step1Opacity = useTransform(scrollYProgress, [0, 0.15, 0.33, 0.4], [1, 1, 1, 0]);
+  const step2Opacity = useTransform(scrollYProgress, [0.3, 0.4, 0.66, 0.73], [0, 1, 1, 0]);
+  const step3Opacity = useTransform(scrollYProgress, [0.63, 0.73, 1], [0, 1, 1]);
 
   return (
-    <section ref={containerRef} className="relative bg-foreground" style={{ height: "300vh" }}>
+    <section 
+      ref={containerRef} 
+      className="relative bg-foreground" 
+      style={{ height: "200vh" }}
+    >
       {/* Sticky Container */}
       <div className="sticky top-0 h-screen flex items-center overflow-hidden">
-        <div className="absolute inset-0 gradient-glow opacity-30" />
+        {/* Subtle background glow */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 opacity-50" />
         
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Left: Text Content */}
-            <div className="relative h-[400px]">
+            <div className="relative h-[350px] lg:h-[400px]">
               {showcaseSteps.map((step, index) => {
                 const opacity = index === 0 ? step1Opacity : index === 1 ? step2Opacity : step3Opacity;
                 
@@ -371,17 +368,20 @@ const ScrollShowcaseSection = () => {
                     style={{ opacity }}
                     className="absolute inset-0 flex flex-col justify-center"
                   >
-                    <p className="text-primary/60 text-sm uppercase tracking-[0.2em] mb-4">
+                    {/* Section label - light gray, uppercase */}
+                    <p className="text-slate-400 text-sm uppercase tracking-[0.2em] mb-6 font-medium">
                       {step.title}
                     </p>
-                    <div className="space-y-6">
+                    
+                    {/* Main content items - pure white */}
+                    <div className="space-y-5">
                       {step.items.map((item, i) => (
-                        <motion.p
+                        <p
                           key={i}
-                          className="text-2xl md:text-3xl lg:text-4xl font-medium text-primary-foreground leading-tight"
+                          className="text-xl md:text-2xl lg:text-3xl font-medium text-white leading-snug"
                         >
                           {item}
-                        </motion.p>
+                        </p>
                       ))}
                     </div>
                   </motion.div>
@@ -389,28 +389,28 @@ const ScrollShowcaseSection = () => {
               })}
             </div>
             
-            {/* Right: Visual Content */}
-            <div className="relative h-[500px] lg:h-[600px] flex items-center justify-center">
+            {/* Right: Visual Content - Sticky */}
+            <div className="relative h-[450px] lg:h-[550px] flex items-center justify-center">
               {/* Dashboard */}
               <motion.div
-                style={{ opacity: step1Opacity, scale: step1Scale }}
-                className="absolute inset-0 flex items-center justify-center"
+                style={{ opacity: step1Opacity }}
+                className="absolute inset-0 flex items-center justify-center pointer-events-none"
               >
                 <DashboardMockup />
               </motion.div>
               
               {/* Mobile */}
               <motion.div
-                style={{ opacity: step2Opacity, scale: step2Scale }}
-                className="absolute inset-0 flex items-center justify-center"
+                style={{ opacity: step2Opacity }}
+                className="absolute inset-0 flex items-center justify-center pointer-events-none"
               >
                 <MobileMockup />
               </motion.div>
               
               {/* PDF */}
               <motion.div
-                style={{ opacity: step3Opacity, scale: step3Scale }}
-                className="absolute inset-0 flex items-center justify-center"
+                style={{ opacity: step3Opacity }}
+                className="absolute inset-0 flex items-center justify-center pointer-events-none"
               >
                 <PDFMockup />
               </motion.div>
