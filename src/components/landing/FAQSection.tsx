@@ -4,40 +4,32 @@ import { Plus, Minus } from "lucide-react";
 
 const faqs = [
   {
-    question: "What exactly is CleanProof?",
-    answer: "CleanProof is a proof-of-work system for cleaning companies. It shows when cleaners were on site, what was done, and provides a single PDF report you can share with clients. No task lists. No messaging. Just evidence.",
+    question: "What exactly does CleanProof do?",
+    answer: "CleanProof captures proof that cleaning work was completed. It records when cleaners check in and out (GPS verified), what photos were taken, and which tasks were completed. At the end, it generates a professional PDF report you can share with clients.",
   },
   {
-    question: "Who is CleanProof for?",
-    answer: "For cleaning company owners and operations managers who need proof — not promises. If you manage cleaners and deal with client disputes, CleanProof is built for you.",
+    question: "Is this a replacement for my current tools?",
+    answer: "No. CleanProof is not a scheduling tool, CRM, or task manager. It works alongside your existing systems. You keep managing jobs your way — CleanProof simply adds a proof layer on top.",
   },
   {
-    question: "Do my clients need to use CleanProof?",
-    answer: "No. Clients never log in. They simply receive a clear PDF report after the job is done.",
+    question: "Do cleaners need training?",
+    answer: "Minimal. If your cleaners can use a phone camera, they can use CleanProof. The app shows only today's jobs and guides them step-by-step through check-in, photos, checklist, and check-out.",
   },
   {
-    question: "How does this work day-to-day?",
-    answer: "You schedule jobs as usual. Cleaners check in on site, take photos, complete a checklist, and check out. You receive a structured report automatically.",
+    question: "What happens if a step is skipped?",
+    answer: "Steps cannot be skipped. Cleaners must complete each required step in order. If something is missed, the job cannot be marked as complete. This ensures consistent, reliable proof every time.",
   },
   {
-    question: "Do cleaners need to be tech-savvy?",
-    answer: "No. If they can use a phone camera, they can use CleanProof. The app only shows today's jobs and required steps.",
+    question: "How reliable is GPS verification?",
+    answer: "Very reliable. Check-in and check-out only work when the cleaner is physically near the job location. GPS coordinates are recorded and included in the final report. Faking location is not possible.",
   },
   {
-    question: "Can cleaners fake location or photos?",
-    answer: "No. Check-in and check-out only work near the job location (GPS verified). Photos are tied to the job and time they were taken.",
+    question: "Can I share reports with clients?",
+    answer: "Yes. Each completed job generates a professional PDF report. You can download it, email it, or share a link. Clients don't need to log in — they simply receive the proof.",
   },
   {
-    question: "What happens if there is no internet on site?",
-    answer: "Photos and checklist actions can be captured offline and synced later. Check-in and check-out require a connection to ensure location accuracy.",
-  },
-  {
-    question: "What exactly do I get at the end of a job?",
-    answer: "A professional PDF report with job details, times, photos, and checklist. One file. Clear proof.",
-  },
-  {
-    question: "Is this a marketplace or client platform?",
-    answer: "No. CleanProof is an internal operational tool. You stay in full control of your business and clients.",
+    question: "Is this suitable for UAE regulations?",
+    answer: "Yes. CleanProof is built for UAE-based cleaning operations. It supports local time zones, works offline when needed, and generates documentation that meets professional standards for service verification.",
   },
 ];
 
@@ -106,10 +98,10 @@ const FAQSection = () => {
           className="mb-16 md:mb-24"
         >
           <p className="text-muted-foreground text-sm uppercase tracking-[0.2em] mb-6">
-            Questions
+            FAQ
           </p>
           <h2 className="text-display text-foreground">
-            Everything you need to know.
+            Common questions
           </h2>
         </motion.div>
         
