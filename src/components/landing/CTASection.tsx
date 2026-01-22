@@ -1,19 +1,32 @@
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 import { Button } from "@/components/ui/button";
 
 const CTASection = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
   return (
-    <section className="py-32 px-6 bg-muted/30">
-      <div className="max-w-2xl mx-auto text-center">
-        <h2 className="text-3xl md:text-4xl font-semibold text-foreground mb-8">
-          See how CleanProof works in practice
-        </h2>
-        
-        <Button 
-          size="lg" 
-          className="h-14 px-10 text-base font-medium rounded-xl shadow-soft hover:shadow-elevated transition-all duration-300"
+    <section ref={ref} className="relative py-32 md:py-48 px-6 bg-muted/30">
+      <div className="max-w-3xl mx-auto text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 1 }}
         >
-          Request demo
-        </Button>
+          <h2 className="text-display text-foreground mb-12">
+            Ready to stop arguing
+            <br />
+            about work?
+          </h2>
+          
+          <Button 
+            size="lg" 
+            className="h-14 px-12 text-base font-medium rounded-full shadow-soft hover:shadow-elevated transition-all duration-300"
+          >
+            Request demo
+          </Button>
+        </motion.div>
       </div>
     </section>
   );
