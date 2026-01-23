@@ -49,14 +49,14 @@ const PricingPlansSection = () => {
   return (
     <section 
       ref={ref} 
-      className="relative py-20 md:py-24 px-6 bg-foreground"
+      className="relative py-16 md:py-20 px-6 bg-foreground"
     >
       <div className="relative z-10 max-w-3xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="mb-10 md:mb-12"
+          className="mb-8 md:mb-10"
         >
           <p className="text-primary-foreground/40 text-xs uppercase tracking-[0.2em] mb-3">
             Plans
@@ -66,52 +66,52 @@ const PricingPlansSection = () => {
           </h2>
         </motion.div>
         
-        {/* Shared container for both plans */}
+        {/* Two separate cards with consistent structure */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.1 }}
-          className="grid md:grid-cols-2 gap-0 rounded-2xl border border-primary-foreground/[0.06] overflow-hidden"
+          className="grid md:grid-cols-2 gap-4"
         >
-          {plans.map((plan, index) => (
+          {plans.map((plan) => (
             <div
               key={plan.name}
-              className={`relative flex flex-col p-7 ${
+              className={`relative flex flex-col p-6 rounded-xl ${
                 plan.highlighted 
-                  ? "bg-primary-foreground/[0.04] border-l border-primary-foreground/[0.08] shadow-[inset_0_0_60px_rgba(255,255,255,0.02)]" 
-                  : "bg-primary-foreground/[0.02]"
-              } ${index === 0 ? "md:border-r md:border-primary-foreground/[0.04]" : ""}`}
+                  ? "bg-primary-foreground/[0.05] border border-primary-foreground/[0.08]" 
+                  : "bg-primary-foreground/[0.02] border border-primary-foreground/[0.04]"
+              }`}
             >
               {/* Reserved badge space - identical height for both cards */}
-              <div className="h-6 mb-4">
+              <div className="h-5 mb-3">
                 {plan.badge && (
-                  <span className="inline-block px-2.5 py-0.5 text-[10px] font-medium text-primary bg-primary/10 rounded-full border border-primary/15">
+                  <span className="inline-block px-2 py-0.5 text-[10px] font-medium text-primary bg-primary/10 rounded-full border border-primary/15">
                     {plan.badge}
                   </span>
                 )}
               </div>
               
-              {/* Plan name */}
-              <h3 className="text-sm font-medium text-primary-foreground/45 mb-2">
+              {/* Plan name - increased prominence */}
+              <h3 className="text-lg font-semibold text-primary-foreground mb-2">
                 {plan.name}
               </h3>
               
-              {/* Price - aligned baseline */}
+              {/* Price */}
               <p className="text-3xl font-semibold text-primary-foreground mb-1">
                 {plan.price}
                 <span className="text-sm font-normal text-primary-foreground/35 ml-1">/ month</span>
               </p>
               
               {/* Description - fixed height */}
-              <p className="text-sm text-primary-foreground/40 h-10 mb-6">
+              <p className="text-sm text-primary-foreground/45 h-10 mb-5">
                 {plan.description}
               </p>
               
               {/* Features - fixed height container */}
-              <div className="flex-1 mb-6" style={{ minHeight: "156px" }}>
+              <div className="flex-1 mb-5" style={{ minHeight: "144px" }}>
                 <div className="space-y-2">
                   {plan.features.map((feature, i) => (
-                    <p key={i} className="text-sm text-primary-foreground/45 h-5">
+                    <p key={i} className="text-sm text-primary-foreground/50 h-5">
                       {feature}
                     </p>
                   ))}
@@ -124,11 +124,7 @@ const PricingPlansSection = () => {
                   <Link to={plan.ctaLink} className="block">
                     <Button 
                       size="lg" 
-                      className={`w-full h-11 text-sm font-medium rounded-full transition-all duration-300 ${
-                        plan.highlighted
-                          ? "bg-primary-foreground text-foreground hover:bg-primary-foreground/90 shadow-sm"
-                          : "bg-primary-foreground/90 text-foreground hover:bg-primary-foreground"
-                      }`}
+                      className="w-full h-11 text-sm font-medium rounded-full bg-primary-foreground text-foreground hover:bg-primary-foreground/90 transition-all duration-300"
                     >
                       {plan.cta}
                     </Button>
@@ -136,17 +132,13 @@ const PricingPlansSection = () => {
                 ) : (
                   <Button 
                     size="lg" 
-                    className={`w-full h-11 text-sm font-medium rounded-full transition-all duration-300 ${
-                      plan.highlighted
-                        ? "bg-primary-foreground text-foreground hover:bg-primary-foreground/90 shadow-sm"
-                        : "bg-primary-foreground/90 text-foreground hover:bg-primary-foreground"
-                    }`}
+                    className="w-full h-11 text-sm font-medium rounded-full bg-primary-foreground text-foreground hover:bg-primary-foreground/90 transition-all duration-300"
                   >
                     {plan.cta}
                   </Button>
                 )}
                 {/* Note space - fixed height */}
-                <div className="h-5 mt-2.5">
+                <div className="h-5 mt-2">
                   {plan.note && (
                     <p className="text-[11px] text-primary-foreground/35 text-center">
                       {plan.note}
