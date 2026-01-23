@@ -8,23 +8,21 @@ const PricingCTASection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="relative py-24 md:py-32 px-6 bg-foreground">
-      <div className="absolute inset-0 gradient-glow opacity-20" />
-      
-      <div className="relative z-10 max-w-2xl mx-auto text-center">
+    <section ref={ref} className="relative py-16 md:py-20 px-6 bg-foreground">
+      <div className="relative z-10 max-w-md mx-auto text-center">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
         >
-          <h2 className="text-2xl md:text-3xl font-semibold text-white mb-8">
+          <p className="text-lg font-medium text-primary-foreground/80 mb-5">
             Questions? Let's talk.
-          </h2>
+          </p>
           
           <Link to="/demo">
             <Button 
-              size="lg" 
-              className="h-12 px-10 text-base font-medium rounded-full bg-primary-foreground text-foreground hover:bg-primary-foreground/90 transition-all duration-300"
+              size="default" 
+              className="h-10 px-8 text-sm font-medium rounded-full bg-primary-foreground/90 text-foreground hover:bg-primary-foreground transition-all duration-300"
             >
               Request demo
             </Button>

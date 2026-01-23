@@ -20,6 +20,7 @@ const plans = [
     ctaLink: null,
     note: "No credit card required.",
     badge: null,
+    highlighted: false,
   },
   {
     name: "Pro",
@@ -31,12 +32,13 @@ const plans = [
       "Everything in Standard",
       "Priority support",
       "Advanced proof use cases",
-      "", // Empty to match height
+      "",
     ],
     cta: "Request access",
     ctaLink: "/demo",
     note: null,
     badge: "Most teams choose Pro",
+    highlighted: true,
   },
 ];
 
@@ -47,68 +49,69 @@ const PricingPlansSection = () => {
   return (
     <section 
       ref={ref} 
-      className="relative py-24 md:py-32 px-6 bg-foreground"
+      className="relative py-20 md:py-24 px-6 bg-foreground"
     >
-      {/* Subtle grid background */}
-      <div 
-        className="absolute inset-0 opacity-[0.02]" 
-        style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, hsl(var(--primary-foreground)) 1px, transparent 0)`,
-          backgroundSize: '48px 48px'
-        }}
-      />
-      
-      <div className="relative z-10 max-w-4xl mx-auto">
+      <div className="relative z-10 max-w-3xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="mb-12 md:mb-16"
+          className="mb-10 md:mb-12"
         >
-          <p className="text-primary-foreground/50 text-xs uppercase tracking-[0.2em] mb-4">
+          <p className="text-primary-foreground/40 text-xs uppercase tracking-[0.2em] mb-3">
             Plans
           </p>
-          <h2 className="text-2xl md:text-3xl font-semibold text-primary-foreground">
+          <h2 className="text-xl md:text-2xl font-semibold text-primary-foreground">
             Choose your scale.
           </h2>
         </motion.div>
         
-        <div className="grid md:grid-cols-2 gap-6 md:gap-8">
+        {/* Shared container for both plans */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.1 }}
+          className="grid md:grid-cols-2 gap-0 rounded-2xl border border-primary-foreground/[0.06] overflow-hidden"
+        >
           {plans.map((plan, index) => (
-            <motion.div
+            <div
               key={plan.name}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.1 + index * 0.1 }}
-              className={`relative flex flex-col p-8 rounded-2xl border ${
-                plan.badge 
-                  ? "bg-primary-foreground/[0.05] border-primary/30" 
-                  : "bg-primary-foreground/[0.03] border-primary-foreground/[0.06]"
-              }`}
+              className={`relative flex flex-col p-7 ${
+                plan.highlighted 
+                  ? "bg-primary-foreground/[0.04] border-l border-primary-foreground/[0.08] shadow-[inset_0_0_60px_rgba(255,255,255,0.02)]" 
+                  : "bg-primary-foreground/[0.02]"
+              } ${index === 0 ? "md:border-r md:border-primary-foreground/[0.04]" : ""}`}
             >
-              {/* Badge */}
-              {plan.badge && (
-                <div className="absolute -top-3 left-8">
-                  <span className="px-3 py-1 text-xs font-medium text-primary bg-primary/10 rounded-full border border-primary/20">
+              {/* Reserved badge space - identical height for both cards */}
+              <div className="h-6 mb-4">
+                {plan.badge && (
+                  <span className="inline-block px-2.5 py-0.5 text-[10px] font-medium text-primary bg-primary/10 rounded-full border border-primary/15">
                     {plan.badge}
                   </span>
-                </div>
-              )}
-              
-              {/* Header - fixed height */}
-              <div className={`mb-6 ${plan.badge ? "mt-2" : ""}`} style={{ minHeight: "88px" }}>
-                <h3 className="text-base font-medium text-primary-foreground/50 mb-2">{plan.name}</h3>
-                <p className="text-4xl font-semibold text-primary-foreground mb-2">
-                  {plan.price}<span className="text-base font-normal text-primary-foreground/40"> / month</span>
-                </p>
-                <p className="text-sm text-primary-foreground/50">{plan.description}</p>
+                )}
               </div>
               
+              {/* Plan name */}
+              <h3 className="text-sm font-medium text-primary-foreground/45 mb-2">
+                {plan.name}
+              </h3>
+              
+              {/* Price - aligned baseline */}
+              <p className="text-3xl font-semibold text-primary-foreground mb-1">
+                {plan.price}
+                <span className="text-sm font-normal text-primary-foreground/35 ml-1">/ month</span>
+              </p>
+              
+              {/* Description - fixed height */}
+              <p className="text-sm text-primary-foreground/40 h-10 mb-6">
+                {plan.description}
+              </p>
+              
               {/* Features - fixed height container */}
-              <div className="flex-1 mb-8" style={{ minHeight: "180px" }}>
-                <div className="space-y-2.5">
+              <div className="flex-1 mb-6" style={{ minHeight: "156px" }}>
+                <div className="space-y-2">
                   {plan.features.map((feature, i) => (
-                    <p key={i} className="text-sm text-primary-foreground/50 h-5">
+                    <p key={i} className="text-sm text-primary-foreground/45 h-5">
                       {feature}
                     </p>
                   ))}
@@ -116,12 +119,16 @@ const PricingPlansSection = () => {
               </div>
               
               {/* CTA - aligned at bottom */}
-              <div className="mt-auto">
+              <div>
                 {plan.ctaLink ? (
                   <Link to={plan.ctaLink} className="block">
                     <Button 
                       size="lg" 
-                      className="w-full h-12 text-sm font-medium rounded-full bg-primary-foreground text-foreground hover:bg-primary-foreground/90 transition-all duration-300"
+                      className={`w-full h-11 text-sm font-medium rounded-full transition-all duration-300 ${
+                        plan.highlighted
+                          ? "bg-primary-foreground text-foreground hover:bg-primary-foreground/90 shadow-sm"
+                          : "bg-primary-foreground/90 text-foreground hover:bg-primary-foreground"
+                      }`}
                     >
                       {plan.cta}
                     </Button>
@@ -129,21 +136,27 @@ const PricingPlansSection = () => {
                 ) : (
                   <Button 
                     size="lg" 
-                    className="w-full h-12 text-sm font-medium rounded-full bg-primary-foreground text-foreground hover:bg-primary-foreground/90 transition-all duration-300"
+                    className={`w-full h-11 text-sm font-medium rounded-full transition-all duration-300 ${
+                      plan.highlighted
+                        ? "bg-primary-foreground text-foreground hover:bg-primary-foreground/90 shadow-sm"
+                        : "bg-primary-foreground/90 text-foreground hover:bg-primary-foreground"
+                    }`}
                   >
                     {plan.cta}
                   </Button>
                 )}
-                {plan.note && (
-                  <p className="text-xs text-primary-foreground/40 mt-3 text-center h-4">
-                    {plan.note}
-                  </p>
-                )}
-                {!plan.note && <div className="h-4 mt-3" />}
+                {/* Note space - fixed height */}
+                <div className="h-5 mt-2.5">
+                  {plan.note && (
+                    <p className="text-[11px] text-primary-foreground/35 text-center">
+                      {plan.note}
+                    </p>
+                  )}
+                </div>
               </div>
-            </motion.div>
+            </div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
