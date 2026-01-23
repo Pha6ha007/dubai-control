@@ -49,8 +49,11 @@ const PricingPlansSection = () => {
   return (
     <section 
       ref={ref} 
-      className="relative py-16 md:py-20 px-6 bg-foreground"
+      className="relative py-16 md:py-20 px-6 bg-background"
     >
+      {/* Subtle top border for visual separation */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border/50 to-transparent" />
+      
       <div className="relative z-10 max-w-3xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
