@@ -12,16 +12,8 @@ const faqs = [
     answer: "Yes. You can upgrade or downgrade at any time. Changes take effect immediately. If you downgrade, you'll need to reduce your active cleaners to fit within the new plan's limits.",
   },
   {
-    question: "Do clients need access?",
-    answer: "No. Clients receive PDF reports directly — by email or download link. They don't need to create accounts or log into CleanProof. The proof speaks for itself.",
-  },
-  {
     question: "Is there a contract?",
     answer: "No long-term contracts. All plans are month-to-month. You can cancel at any time. If you cancel, your account remains active until the end of your billing period.",
-  },
-  {
-    question: "Is CleanProof suitable for UAE operations?",
-    answer: "Yes. CleanProof is built for UAE-based cleaning operations. It supports local time zones, works offline when needed, and generates documentation that meets professional standards for service verification.",
   },
 ];
 
@@ -81,19 +73,19 @@ const PricingFAQSection = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section ref={ref} className="relative py-32 md:py-48 px-6 bg-background">
-      <div className="max-w-4xl mx-auto">
+    <section ref={ref} className="relative py-20 md:py-28 px-6 bg-background">
+      <div className="max-w-3xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="mb-16 md:mb-24"
+          className="mb-12 md:mb-16"
         >
-          <p className="text-muted-foreground text-sm uppercase tracking-[0.2em] mb-6">
+          <p className="text-muted-foreground text-xs uppercase tracking-[0.2em] mb-4">
             FAQ
           </p>
-          <h2 className="text-display text-foreground">
-            Pricing questions
+          <h2 className="text-xl md:text-2xl font-semibold text-foreground">
+            Common questions
           </h2>
         </motion.div>
         
