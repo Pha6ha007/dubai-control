@@ -34,7 +34,7 @@ const FAQItem = ({ faq, index, isOpen, onToggle }: {
         onClick={onToggle}
         className="w-full text-left py-8 flex items-start justify-between gap-8 focus:outline-none"
       >
-        <span className="text-xl md:text-2xl font-medium text-foreground group-hover:text-primary transition-colors duration-300">
+        <span className="text-lg font-medium text-foreground group-hover:text-primary transition-colors duration-300">
           {faq.question}
         </span>
         <span className="flex-shrink-0 mt-1">
@@ -73,18 +73,15 @@ const PricingFAQSection = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section ref={ref} className="relative py-20 md:py-28 px-6 bg-background">
+    <section ref={ref} className="relative py-16 md:py-20 px-6 bg-background">
       <div className="max-w-3xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="mb-12 md:mb-16"
+          className="mb-10 md:mb-12"
         >
-          <p className="text-muted-foreground text-xs uppercase tracking-[0.2em] mb-4">
-            FAQ
-          </p>
-          <h2 className="text-xl md:text-2xl font-semibold text-foreground">
+          <h2 className="text-2xl md:text-3xl font-semibold text-foreground">
             Common questions
           </h2>
         </motion.div>

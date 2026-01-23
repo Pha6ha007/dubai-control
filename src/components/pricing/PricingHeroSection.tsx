@@ -2,13 +2,13 @@ import { motion } from "framer-motion";
 
 const PricingHeroSection = () => {
   return (
-    <section className="relative min-h-[45vh] flex items-center justify-center overflow-hidden bg-foreground">
+    <section className="relative min-h-[40vh] flex items-center justify-center overflow-hidden bg-foreground pt-20">
       {/* Subtle glow effect - very soft */}
-      <div className="absolute inset-0 gradient-glow opacity-15" />
+      <div className="absolute inset-0 gradient-glow opacity-10" />
       
       {/* Grid overlay - minimal */}
       <div 
-        className="absolute inset-0 opacity-[0.015]"
+        className="absolute inset-0 opacity-[0.01]"
         style={{
           backgroundImage: `linear-gradient(hsl(var(--primary-foreground)) 1px, transparent 1px),
                            linear-gradient(90deg, hsl(var(--primary-foreground)) 1px, transparent 1px)`,
@@ -16,12 +16,12 @@ const PricingHeroSection = () => {
         }}
       />
       
-      <div className="relative z-10 max-w-2xl mx-auto px-6 py-16 text-center">
+      <div className="relative z-10 max-w-xl mx-auto px-6 py-12 text-center">
         <motion.p
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-primary/60 text-xs uppercase tracking-[0.25em] mb-5"
+          className="text-primary/50 text-xs uppercase tracking-[0.25em] mb-4"
         >
           Pricing
         </motion.p>
@@ -30,7 +30,7 @@ const PricingHeroSection = () => {
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="text-3xl md:text-4xl font-semibold leading-[1.15] tracking-tight text-primary-foreground mb-4"
+          className="text-4xl md:text-5xl font-semibold leading-[1.1] tracking-tight text-primary-foreground mb-4"
         >
           Pricing built for
           <br />
@@ -41,7 +41,7 @@ const PricingHeroSection = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-primary-foreground/35 text-sm max-w-sm mx-auto"
+          className="text-primary-foreground/40 text-sm max-w-md mx-auto"
         >
           Simple limits. No hidden usage rules. No feature tiers.
         </motion.p>

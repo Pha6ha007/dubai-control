@@ -8,7 +8,7 @@ const PricingCTASection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="relative py-16 md:py-20 px-6 bg-foreground">
+    <section ref={ref} className="relative py-12 md:py-14 px-6 bg-foreground">
       <div className="relative z-10 max-w-md mx-auto text-center">
         <motion.div
           initial={{ opacity: 0, y: 15 }}
