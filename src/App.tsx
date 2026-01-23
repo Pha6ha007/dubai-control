@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AppLayout } from "@/components/layout/AppLayout";
 import { LocationsProvider } from "@/contexts/LocationsContext";
 import LandingPage from "./pages/LandingPage";
+import PricingPage from "./pages/PricingPage";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Jobs from "./pages/Jobs";
@@ -28,6 +29,7 @@ const App = () => (
           <Routes>
             {/* Public routes */}
             <Route path="/" element={<LandingPage />} />
+            <Route path="/pricing" element={<PricingPage />} />
             <Route path="/demo" element={<DemoRequest />} />
             <Route path="/login" element={<Login />} />
             
