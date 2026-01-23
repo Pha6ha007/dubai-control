@@ -32,16 +32,16 @@ const FAQItem = ({ faq, index, isOpen, onToggle }: {
     >
       <button
         onClick={onToggle}
-        className="w-full text-left py-8 flex items-start justify-between gap-8 focus:outline-none"
+        className="w-full text-left py-6 flex items-start justify-between gap-6 focus:outline-none"
       >
-        <span className="text-lg font-medium text-foreground group-hover:text-primary transition-colors duration-300">
+        <span className="text-base font-medium text-foreground/80 group-hover:text-foreground transition-colors duration-300">
           {faq.question}
         </span>
-        <span className="flex-shrink-0 mt-1">
+        <span className="flex-shrink-0 mt-0.5">
           {isOpen ? (
-            <Minus className="w-5 h-5 text-primary" />
+            <Minus className="w-4 h-4 text-primary" />
           ) : (
-            <Plus className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors duration-300" />
+            <Plus className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors duration-300" />
           )}
         </span>
       </button>
@@ -55,14 +55,14 @@ const FAQItem = ({ faq, index, isOpen, onToggle }: {
             transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
             className="overflow-hidden"
           >
-            <p className="pb-8 text-lg text-muted-foreground leading-relaxed max-w-3xl">
+            <p className="pb-6 text-sm text-muted-foreground leading-relaxed max-w-2xl">
               {faq.answer}
             </p>
           </motion.div>
         )}
       </AnimatePresence>
       
-      <div className="h-px bg-border/50" />
+      <div className="h-px bg-border/40" />
     </motion.div>
   );
 };
@@ -73,21 +73,24 @@ const PricingFAQSection = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section ref={ref} className="relative py-16 md:py-20 px-6 bg-background">
-      <div className="max-w-3xl mx-auto">
+    <section ref={ref} className="relative py-20 md:py-24 px-6 bg-background">
+      <div className="max-w-2xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="mb-10 md:mb-12"
+          className="mb-12 md:mb-16"
         >
-          <h2 className="text-2xl md:text-3xl font-semibold text-foreground">
+          <p className="text-primary text-xs uppercase tracking-[0.2em] mb-4">
+            FAQ
+          </p>
+          <h2 className="text-3xl md:text-4xl font-semibold text-foreground tracking-tight">
             Common questions
           </h2>
         </motion.div>
         
         {isInView && (
-          <div className="divide-y-0">
+          <div>
             {faqs.map((faq, index) => (
               <FAQItem 
                 key={index} 

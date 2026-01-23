@@ -6,29 +6,36 @@ const PricingTrialSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="relative py-10 md:py-12 px-6 bg-foreground border-t border-primary-foreground/[0.04]">
-      <div className="max-w-xl mx-auto">
+    <section ref={ref} className="relative py-14 md:py-16 px-6 bg-foreground">
+      {/* Top separator */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-px bg-primary-foreground/10" />
+      
+      <div className="max-w-lg mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <h3 className="text-lg font-semibold text-primary-foreground mb-1.5">
+          <h3 className="text-xl font-semibold text-primary-foreground mb-2">
             7-day free trial
           </h3>
           
-          <p className="text-primary-foreground/45 text-sm mb-4">
+          <p className="text-primary-foreground/50 text-sm mb-6">
             Full access. No credit card.
           </p>
           
-          {/* Limits as inline subtle items */}
-          <div className="flex items-center justify-center gap-3 text-xs text-primary-foreground/35">
-            <span>2 cleaners</span>
-            <span className="w-1 h-1 rounded-full bg-primary-foreground/20" />
-            <span>10 jobs</span>
-            <span className="w-1 h-1 rounded-full bg-primary-foreground/20" />
-            <span>Full proof flow</span>
+          {/* Limits as pills */}
+          <div className="flex items-center justify-center gap-2 flex-wrap">
+            <span className="px-3 py-1.5 text-xs text-primary-foreground/50 bg-primary-foreground/[0.04] rounded-full border border-primary-foreground/[0.06]">
+              2 cleaners
+            </span>
+            <span className="px-3 py-1.5 text-xs text-primary-foreground/50 bg-primary-foreground/[0.04] rounded-full border border-primary-foreground/[0.06]">
+              10 jobs
+            </span>
+            <span className="px-3 py-1.5 text-xs text-primary-foreground/50 bg-primary-foreground/[0.04] rounded-full border border-primary-foreground/[0.06]">
+              Full proof flow
+            </span>
           </div>
         </motion.div>
       </div>
