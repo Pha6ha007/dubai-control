@@ -49,22 +49,29 @@ const PricingPlansSection = () => {
   return (
     <section 
       ref={ref} 
-      className="relative py-16 md:py-20 px-6 bg-background"
+      className="relative py-20 md:py-28 px-6 bg-foreground"
     >
-      {/* Subtle top border for visual separation */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border/50 to-transparent" />
+      {/* Grid overlay - matching landing page */}
+      <div 
+        className="absolute inset-0 opacity-[0.02]"
+        style={{
+          backgroundImage: `linear-gradient(hsl(var(--primary-foreground)) 1px, transparent 1px),
+                           linear-gradient(90deg, hsl(var(--primary-foreground)) 1px, transparent 1px)`,
+          backgroundSize: '80px 80px'
+        }}
+      />
       
       <div className="relative z-10 max-w-3xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="mb-8 md:mb-10"
+          className="mb-12 md:mb-14 text-center"
         >
-          <p className="text-primary-foreground/40 text-xs uppercase tracking-[0.2em] mb-3">
+          <p className="text-primary/60 text-xs uppercase tracking-[0.2em] mb-4">
             Plans
           </p>
-          <h2 className="text-xl md:text-2xl font-semibold text-primary-foreground">
+          <h2 className="text-2xl md:text-3xl font-semibold text-primary-foreground">
             Choose your scale.
           </h2>
         </motion.div>
@@ -74,47 +81,47 @@ const PricingPlansSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.1 }}
-          className="grid md:grid-cols-2 gap-4"
+          className="grid md:grid-cols-2 gap-5"
         >
           {plans.map((plan) => (
             <div
               key={plan.name}
-              className={`relative flex flex-col p-6 rounded-xl ${
+              className={`relative flex flex-col p-7 rounded-2xl transition-all duration-300 ${
                 plan.highlighted 
-                  ? "bg-primary-foreground/[0.05] border border-primary-foreground/[0.08]" 
-                  : "bg-primary-foreground/[0.02] border border-primary-foreground/[0.04]"
+                  ? "bg-primary-foreground/[0.06] border border-primary/20" 
+                  : "bg-primary-foreground/[0.02] border border-primary-foreground/[0.06]"
               }`}
             >
               {/* Reserved badge space - identical height for both cards */}
-              <div className="h-5 mb-3">
+              <div className="h-6 mb-4">
                 {plan.badge && (
-                  <span className="inline-block px-2 py-0.5 text-[10px] font-medium text-primary bg-primary/10 rounded-full border border-primary/15">
+                  <span className="inline-block px-3 py-1 text-[11px] font-medium text-primary bg-primary/10 rounded-full border border-primary/20">
                     {plan.badge}
                   </span>
                 )}
               </div>
               
               {/* Plan name - increased prominence */}
-              <h3 className="text-lg font-semibold text-primary-foreground mb-2">
+              <h3 className="text-xl font-semibold text-primary-foreground mb-3 tracking-tight">
                 {plan.name}
               </h3>
               
               {/* Price */}
-              <p className="text-3xl font-semibold text-primary-foreground mb-1">
+              <p className="text-4xl font-semibold text-primary-foreground mb-1.5">
                 {plan.price}
-                <span className="text-sm font-normal text-primary-foreground/35 ml-1">/ month</span>
+                <span className="text-sm font-normal text-primary-foreground/40 ml-1.5">/ month</span>
               </p>
               
               {/* Description - fixed height */}
-              <p className="text-sm text-primary-foreground/45 h-10 mb-5">
+              <p className="text-sm text-primary-foreground/50 h-10 mb-6">
                 {plan.description}
               </p>
               
               {/* Features - fixed height container */}
-              <div className="flex-1 mb-5" style={{ minHeight: "144px" }}>
-                <div className="space-y-2">
+              <div className="flex-1 mb-6" style={{ minHeight: "156px" }}>
+                <div className="space-y-2.5">
                   {plan.features.map((feature, i) => (
-                    <p key={i} className="text-sm text-primary-foreground/50 h-5">
+                    <p key={i} className="text-sm text-primary-foreground/55 h-5">
                       {feature}
                     </p>
                   ))}
@@ -127,7 +134,11 @@ const PricingPlansSection = () => {
                   <Link to={plan.ctaLink} className="block">
                     <Button 
                       size="lg" 
-                      className="w-full h-11 text-sm font-medium rounded-full bg-primary-foreground text-foreground hover:bg-primary-foreground/90 transition-all duration-300"
+                      className={`w-full h-12 text-sm font-medium rounded-full transition-all duration-300 ${
+                        plan.highlighted
+                          ? "bg-primary-foreground text-foreground hover:bg-primary-foreground/90"
+                          : "bg-primary-foreground/90 text-foreground hover:bg-primary-foreground"
+                      }`}
                     >
                       {plan.cta}
                     </Button>
@@ -135,15 +146,19 @@ const PricingPlansSection = () => {
                 ) : (
                   <Button 
                     size="lg" 
-                    className="w-full h-11 text-sm font-medium rounded-full bg-primary-foreground text-foreground hover:bg-primary-foreground/90 transition-all duration-300"
+                    className={`w-full h-12 text-sm font-medium rounded-full transition-all duration-300 ${
+                      plan.highlighted
+                        ? "bg-primary-foreground text-foreground hover:bg-primary-foreground/90"
+                        : "bg-primary-foreground/90 text-foreground hover:bg-primary-foreground"
+                    }`}
                   >
                     {plan.cta}
                   </Button>
                 )}
                 {/* Note space - fixed height */}
-                <div className="h-5 mt-2">
+                <div className="h-5 mt-2.5">
                   {plan.note && (
-                    <p className="text-[11px] text-primary-foreground/35 text-center">
+                    <p className="text-[11px] text-primary-foreground/40 text-center">
                       {plan.note}
                     </p>
                   )}
