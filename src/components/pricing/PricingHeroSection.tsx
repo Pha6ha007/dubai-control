@@ -2,10 +2,10 @@ import { motion } from "framer-motion";
 
 const PricingHeroSection = () => {
   return (
-    <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-primary/[0.08] to-primary/[0.02] pt-20">
+    <section className="relative flex items-center justify-center overflow-hidden bg-gradient-to-b from-primary/[0.06] to-background pt-20 pb-16">
       {/* Grid overlay - matching landing page */}
       <div 
-        className="absolute inset-0 opacity-[0.04]"
+        className="absolute inset-0 opacity-[0.03]"
         style={{
           backgroundImage: `linear-gradient(hsl(var(--foreground)) 1px, transparent 1px),
                            linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)`,
@@ -13,7 +13,10 @@ const PricingHeroSection = () => {
         }}
       />
       
-      <div className="relative z-10 max-w-2xl mx-auto px-6 py-12 text-center">
+      {/* Bottom edge divider */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-border/30" />
+      
+      <div className="relative z-10 max-w-xl mx-auto px-6 py-10 text-center">
         <motion.p
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
@@ -27,7 +30,7 @@ const PricingHeroSection = () => {
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="text-4xl md:text-5xl lg:text-6xl font-semibold leading-[1.1] tracking-tight text-foreground mb-5"
+          className="text-3xl md:text-4xl lg:text-5xl font-semibold leading-[1.15] tracking-tight text-foreground mb-5"
         >
           Pricing built for
           <br />
