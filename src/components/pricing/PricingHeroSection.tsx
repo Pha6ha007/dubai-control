@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const PricingHeroSection = () => {
   return (
-    <section className="relative min-h-[40vh] flex items-center justify-center overflow-hidden bg-foreground pt-20">
+    <section className="relative min-h-[28vh] flex items-center justify-center overflow-hidden bg-foreground pt-20">
       {/* Subtle glow effect - very soft */}
       <div className="absolute inset-0 gradient-glow opacity-10" />
       
@@ -16,7 +16,7 @@ const PricingHeroSection = () => {
         }}
       />
       
-      <div className="relative z-10 max-w-xl mx-auto px-6 py-12 text-center">
+      <div className="relative z-10 max-w-xl mx-auto px-6 py-6 text-center">
         <motion.p
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
