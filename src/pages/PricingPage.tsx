@@ -18,14 +18,14 @@ const PricingPage = () => {
         className="fixed top-0 left-0 right-0 z-50 bg-transparent"
       >
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          <Link to="/" className="text-lg font-semibold text-primary-foreground">
+          <Link to="/" className="text-lg font-semibold text-foreground">
             CleanProof
           </Link>
           
           <Link to="/login">
             <Button 
               variant="ghost" 
-              className="text-primary-foreground/70 hover:text-primary-foreground hover:bg-primary-foreground/10"
+              className="text-foreground/70 hover:text-foreground hover:bg-foreground/5"
             >
               Sign in
             </Button>
