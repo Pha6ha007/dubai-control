@@ -2,10 +2,8 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import PricingHeroSection from "@/components/pricing/PricingHeroSection";
-import PricingModelSection from "@/components/pricing/PricingModelSection";
 import PricingPlansSection from "@/components/pricing/PricingPlansSection";
 import PricingTrialSection from "@/components/pricing/PricingTrialSection";
-import PricingPositioningSection from "@/components/pricing/PricingPositioningSection";
 import PricingFAQSection from "@/components/pricing/PricingFAQSection";
 import PricingCTASection from "@/components/pricing/PricingCTASection";
 
@@ -38,10 +36,8 @@ const PricingPage = () => {
       {/* Page sections */}
       <main className="overflow-hidden">
         <PricingHeroSection />
-        <PricingModelSection />
         <PricingPlansSection />
         <PricingTrialSection />
-        <PricingPositioningSection />
         <PricingFAQSection />
         <PricingCTASection />
       </main>

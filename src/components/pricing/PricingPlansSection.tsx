@@ -36,42 +36,42 @@ const PricingPlansSection = () => {
           </h2>
         </motion.div>
         
-        <div className="grid md:grid-cols-2 gap-12 md:gap-16">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12">
           {/* Standard Plan */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="space-y-8"
+            className="flex flex-col p-8 md:p-10 rounded-2xl bg-white/[0.03] border border-white/[0.06]"
           >
-            <div>
-              <h3 className="text-xl font-medium text-white mb-2">Standard</h3>
+            <div className="mb-6">
+              <h3 className="text-lg font-medium text-slate-400 mb-3">Standard</h3>
               <p className="text-4xl md:text-5xl font-semibold text-white">
-                $99<span className="text-lg font-normal text-slate-400"> / month</span>
+                $99<span className="text-lg font-normal text-slate-500"> / month</span>
               </p>
             </div>
             
-            <p className="text-lg text-slate-300">
+            <p className="text-slate-400 mb-8">
               For small teams that need reliable proof.
             </p>
             
-            <div className="space-y-4 text-slate-400">
+            <div className="flex-1 space-y-3 text-slate-400 text-sm mb-10">
               <p>Up to 5 cleaners</p>
-              <p>Up to 300 jobs per month</p>
+              <p>Up to 300 jobs / month</p>
               <p>GPS check-in / check-out</p>
               <p>Before & after photos</p>
               <p>Checklist validation</p>
               <p>Verified PDF reports</p>
             </div>
             
-            <div className="pt-4">
+            <div className="mt-auto">
               <Button 
                 size="lg" 
-                className="h-12 px-8 text-base font-medium rounded-full bg-primary-foreground text-foreground hover:bg-primary-foreground/90 transition-all duration-300"
+                className="w-full h-12 text-base font-medium rounded-full bg-white/10 text-white hover:bg-white/20 transition-all duration-300"
               >
                 Start 7-day trial
               </Button>
-              <p className="text-sm text-slate-500 mt-3">
+              <p className="text-xs text-slate-500 mt-3 text-center">
                 No credit card required.
               </p>
             </div>
@@ -82,20 +82,27 @@ const PricingPlansSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-8"
+            className="relative flex flex-col p-8 md:p-10 rounded-2xl bg-white/[0.05] border border-primary/30"
           >
-            <div>
-              <h3 className="text-xl font-medium text-white mb-2">Pro</h3>
+            {/* Subtle badge */}
+            <div className="absolute -top-3 left-8 md:left-10">
+              <span className="px-3 py-1 text-xs font-medium text-primary bg-primary/10 rounded-full border border-primary/20">
+                Most teams choose Pro
+              </span>
+            </div>
+            
+            <div className="mb-6 mt-2">
+              <h3 className="text-lg font-medium text-slate-300 mb-3">Pro</h3>
               <p className="text-4xl md:text-5xl font-semibold text-white">
-                $199<span className="text-lg font-normal text-slate-400"> / month</span>
+                $199<span className="text-lg font-normal text-slate-500"> / month</span>
               </p>
             </div>
             
-            <p className="text-lg text-slate-300">
+            <p className="text-slate-300 mb-8">
               For growing operations with higher volume.
             </p>
             
-            <div className="space-y-4 text-slate-400">
+            <div className="flex-1 space-y-3 text-slate-400 text-sm mb-10">
               <p>Up to 15 cleaners</p>
               <p>Unlimited jobs</p>
               <p>Everything in Standard</p>
@@ -103,12 +110,11 @@ const PricingPlansSection = () => {
               <p>Advanced proof use cases</p>
             </div>
             
-            <div className="pt-4">
-              <Link to="/demo">
+            <div className="mt-auto">
+              <Link to="/demo" className="block">
                 <Button 
                   size="lg" 
-                  variant="outline"
-                  className="h-12 px-8 text-base font-medium rounded-full border-slate-600 text-white hover:bg-white/10 transition-all duration-300"
+                  className="w-full h-12 text-base font-medium rounded-full bg-primary-foreground text-foreground hover:bg-primary-foreground/90 transition-all duration-300"
                 >
                   Request access
                 </Button>
