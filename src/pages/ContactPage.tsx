@@ -76,7 +76,7 @@ const ContactPage = () => {
           <Link to="/login">
             <Button
               variant="ghost"
-              className="text-muted-foreground hover:text-foreground hover:bg-muted/50"
+              className="text-muted-foreground hover:text-foreground hover:bg-transparent"
             >
               Sign in
             </Button>
@@ -84,15 +84,15 @@ const ContactPage = () => {
         </div>
       </motion.header>
 
-      {/* Hero */}
-      <section className="relative pt-32 pb-12 px-6">
-        {/* Subtle grid background */}
-        <div
-          className="absolute inset-0 opacity-[0.02]"
+      {/* Hero - Compact with subtle grid */}
+      <section className="relative flex items-center justify-center overflow-hidden bg-gradient-to-b from-primary/[0.06] to-background pt-24 pb-10">
+        {/* Grid overlay - matching pricing page */}
+        <div 
+          className="absolute inset-0 opacity-[0.03]"
           style={{
-            backgroundImage: `linear-gradient(to right, hsl(var(--foreground)) 1px, transparent 1px),
-                              linear-gradient(to bottom, hsl(var(--foreground)) 1px, transparent 1px)`,
-            backgroundSize: "60px 60px",
+            backgroundImage: `linear-gradient(hsl(var(--foreground)) 1px, transparent 1px),
+                             linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)`,
+            backgroundSize: '80px 80px'
           }}
         />
         
@@ -100,19 +100,19 @@ const ContactPage = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="relative max-w-xl mx-auto text-center"
+          className="relative z-10 max-w-xl mx-auto px-6 text-center"
         >
-          <h1 className="text-3xl md:text-4xl font-semibold text-foreground tracking-tight mb-4">
+          <h1 className="text-3xl md:text-4xl font-semibold text-foreground tracking-tight mb-3">
             Have a question about CleanProof?
           </h1>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-base text-muted-foreground">
             We'll get back to you.
           </p>
         </motion.div>
       </section>
 
       {/* Form Section */}
-      <section className="relative px-6 pb-24">
+      <section className="relative px-6 py-16 bg-background">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -121,7 +121,7 @@ const ContactPage = () => {
         >
           {!isSubmitted ? (
             <>
-              <div className="bg-card border border-border/60 rounded-xl shadow-sm p-8 md:p-10">
+              <div className="bg-card border border-border/50 rounded-2xl shadow-sm p-8 md:p-10">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   {/* Name */}
                   <div className="space-y-2">
@@ -133,7 +133,7 @@ const ContactPage = () => {
                       type="text"
                       value={formData.name}
                       onChange={(e) => handleInputChange("name", e.target.value)}
-                      className={errors.name ? "border-destructive" : ""}
+                      className={`h-11 ${errors.name ? "border-destructive" : ""}`}
                       placeholder="Your name"
                     />
                     {errors.name && (
@@ -151,6 +151,7 @@ const ContactPage = () => {
                       type="text"
                       value={formData.company}
                       onChange={(e) => handleInputChange("company", e.target.value)}
+                      className="h-11"
                       placeholder="Your company (optional)"
                     />
                   </div>
@@ -165,7 +166,7 @@ const ContactPage = () => {
                       type="email"
                       value={formData.email}
                       onChange={(e) => handleInputChange("email", e.target.value)}
-                      className={errors.email ? "border-destructive" : ""}
+                      className={`h-11 ${errors.email ? "border-destructive" : ""}`}
                       placeholder="you@company.com"
                     />
                     {errors.email && (
@@ -193,25 +194,25 @@ const ContactPage = () => {
                   {/* Submit Button */}
                   <Button
                     type="submit"
-                    className="w-full md:w-auto h-11 px-8 bg-foreground text-background hover:bg-foreground/90"
+                    className="w-full md:w-auto h-11 px-8 bg-primary text-primary-foreground hover:bg-primary/90 rounded-full"
                   >
                     Send message
                   </Button>
                 </form>
-              </div>
 
-              {/* Helper text */}
-              <div className="mt-8 text-center space-y-1">
-                <p className="text-sm text-muted-foreground">
-                  For product demos, use{" "}
-                  <Link to="/demo" className="text-foreground hover:underline">
-                    Request demo
-                  </Link>
-                  .
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  For support — describe your case here.
-                </p>
+                {/* Helper text inside card, below button */}
+                <div className="mt-6 pt-6 border-t border-border/40 space-y-1">
+                  <p className="text-sm text-muted-foreground">
+                    For product demos, use{" "}
+                    <Link to="/demo" className="text-primary hover:underline">
+                      Request demo
+                    </Link>
+                    .
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    For support — describe your case here.
+                  </p>
+                </div>
               </div>
             </>
           ) : (
@@ -219,7 +220,7 @@ const ContactPage = () => {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.4 }}
-              className="bg-card border border-border/60 rounded-xl shadow-sm p-10 text-center"
+              className="bg-card border border-border/50 rounded-2xl shadow-sm p-10 text-center"
             >
               <h2 className="text-xl font-semibold text-foreground mb-3">
                 Message sent
@@ -228,7 +229,7 @@ const ContactPage = () => {
                 We'll get back to you soon.
               </p>
               <Link to="/">
-                <Button variant="outline" className="h-10">
+                <Button variant="outline" className="h-10 rounded-full">
                   Back to home
                 </Button>
               </Link>
@@ -238,36 +239,42 @@ const ContactPage = () => {
       </section>
 
       {/* Footer */}
-      <footer className="py-16 px-6 bg-foreground border-t border-white/5">
+      <footer className="py-12 px-6 border-t border-border/40">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8">
-            <span className="text-primary-foreground font-semibold">CleanProof</span>
-            <p className="text-sm text-primary-foreground/40">
+            <span className="text-foreground font-semibold">CleanProof</span>
+            <p className="text-sm text-muted-foreground">
               Built for UAE cleaning operations.
             </p>
           </div>
           <div className="flex items-center gap-8">
             <Link
               to="/"
-              className="text-sm text-primary-foreground/40 hover:text-primary-foreground transition-colors"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
               Home
             </Link>
             <Link
               to="/pricing"
-              className="text-sm text-primary-foreground/40 hover:text-primary-foreground transition-colors"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
               Pricing
             </Link>
+            <Link
+              to="/contact"
+              className="text-sm text-foreground font-medium"
+            >
+              Contact
+            </Link>
             <a
               href="#"
-              className="text-sm text-primary-foreground/40 hover:text-primary-foreground transition-colors"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
               Privacy
             </a>
             <a
               href="#"
-              className="text-sm text-primary-foreground/40 hover:text-primary-foreground transition-colors"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
               Terms
             </a>
