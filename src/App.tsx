@@ -7,6 +7,7 @@ import { AppLayout } from "@/components/layout/AppLayout";
 import { LocationsProvider } from "@/contexts/LocationsContext";
 import LandingPage from "./pages/LandingPage";
 import PricingPage from "./pages/PricingPage";
+import ProductUpdatesPage from "./pages/ProductUpdatesPage";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Jobs from "./pages/Jobs";
@@ -31,6 +32,7 @@ const App = () => (
             {/* Public routes */}
             <Route path="/" element={<LandingPage />} />
             <Route path="/pricing" element={<PricingPage />} />
+            <Route path="/updates" element={<ProductUpdatesPage />} />
             <Route path="/demo" element={<DemoRequest />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/login" element={<Login />} />
