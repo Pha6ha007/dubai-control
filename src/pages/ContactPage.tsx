@@ -103,7 +103,7 @@ const ContactPage = () => {
           className="relative z-10 max-w-xl mx-auto px-6 text-center"
         >
           <h1 className="text-3xl md:text-4xl font-semibold text-foreground tracking-tight mb-3">
-            Have a question about CleanProof?
+            Have a question about <span className="text-primary">CleanProof?</span>
           </h1>
           <p className="text-base text-muted-foreground">
             We'll get back to you.
