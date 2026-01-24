@@ -126,13 +126,8 @@ const ProductUpdatesPage = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <motion.header 
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-        className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border/30"
-      >
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border/40">
+        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-10">
             <Link to="/" className="text-lg font-semibold text-foreground">
               CleanProof
@@ -162,17 +157,17 @@ const ProductUpdatesPage = () => {
           <Link to="/login">
             <Button 
               variant="ghost" 
-              className="text-foreground/70 hover:text-foreground hover:bg-foreground/5"
+              className="text-muted-foreground hover:text-foreground hover:bg-transparent"
             >
               Sign in
             </Button>
           </Link>
         </div>
-      </motion.header>
+      </header>
 
       <main>
         {/* Hero Section - Matching Pricing page */}
-        <section className="relative flex items-center justify-center overflow-hidden bg-gradient-to-b from-primary/[0.06] to-background pt-28 pb-16">
+        <section className="relative flex items-center justify-center overflow-hidden bg-gradient-to-b from-primary/[0.06] to-background pt-24 pb-12">
           {/* Grid overlay - matching pricing page */}
           <div 
             className="absolute inset-0 opacity-[0.03]"
@@ -205,42 +200,40 @@ const ProductUpdatesPage = () => {
         </section>
 
         {/* Updates List */}
-        <section className="pb-24 px-6">
+        <section className="py-16 px-6">
           <div className="max-w-3xl mx-auto">
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="space-y-6"
-            >
+            <div className="space-y-5">
               {updates.map((update) => (
                 <UpdateCard key={update.id} update={update} />
               ))}
-            </motion.div>
+            </div>
           </div>
         </section>
       </main>
 
       {/* Footer */}
-      <footer className="py-16 px-6 bg-foreground border-t border-white/5">
+      <footer className="py-12 px-6 border-t border-border/40">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8">
-            <span className="text-primary-foreground font-semibold">CleanProof</span>
-            <p className="text-sm text-primary-foreground/40">
+            <span className="text-foreground font-semibold">CleanProof</span>
+            <p className="text-sm text-muted-foreground">
               Built for UAE cleaning operations.
             </p>
           </div>
           <div className="flex items-center gap-8">
-            <Link to="/" className="text-sm text-primary-foreground/40 hover:text-primary-foreground transition-colors">
+            <Link to="/" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Home
             </Link>
-            <Link to="/pricing" className="text-sm text-primary-foreground/40 hover:text-primary-foreground transition-colors">
+            <Link to="/pricing" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Pricing
             </Link>
-            <a href="#" className="text-sm text-primary-foreground/40 hover:text-primary-foreground transition-colors">
+            <Link to="/contact" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              Contact
+            </Link>
+            <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Privacy
             </a>
-            <a href="#" className="text-sm text-primary-foreground/40 hover:text-primary-foreground transition-colors">
+            <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Terms
             </a>
           </div>
