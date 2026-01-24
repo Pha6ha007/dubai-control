@@ -15,6 +15,7 @@ import CreateJob from "./pages/CreateJob";
 import Locations from "./pages/Locations";
 import Settings from "./pages/Settings";
 import DemoRequest from "./pages/DemoRequest";
+import ContactPage from "./pages/ContactPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -31,6 +32,7 @@ const App = () => (
             <Route path="/" element={<LandingPage />} />
             <Route path="/pricing" element={<PricingPage />} />
             <Route path="/demo" element={<DemoRequest />} />
+            <Route path="/contact" element={<ContactPage />} />
             <Route path="/login" element={<Login />} />
             
             {/* Protected routes with sidebar layout */}
