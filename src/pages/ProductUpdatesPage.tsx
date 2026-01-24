@@ -172,11 +172,10 @@ const ProductUpdatesPage = () => {
 
       <main>
         {/* Compact Hero */}
-        <section className="relative pt-32 pb-16 overflow-hidden">
-          {/* Subtle background */}
-          <div className="absolute inset-0 bg-gradient-to-b from-primary/[0.03] to-transparent" />
+        <section className="relative pt-32 pb-16 overflow-hidden bg-[hsl(210_40%_98%)]">
+          {/* Subtle grid pattern */}
           <div 
-            className="absolute inset-0 opacity-[0.02]"
+            className="absolute inset-0 opacity-[0.04]"
             style={{
               backgroundImage: `linear-gradient(to right, hsl(var(--foreground)) 1px, transparent 1px),
                                linear-gradient(to bottom, hsl(var(--foreground)) 1px, transparent 1px)`,
@@ -184,23 +183,26 @@ const ProductUpdatesPage = () => {
             }}
           />
           
+          {/* Bottom edge divider */}
+          <div className="absolute bottom-0 left-0 right-0 h-px bg-border/30" />
+          
           <div className="relative max-w-3xl mx-auto px-6 text-center">
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-3xl md:text-4xl font-bold text-foreground mb-4"
-            >
+            {/* Category label */}
+            <div className="mb-6">
+              <span className="inline-block px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.15em] text-primary bg-primary/10 rounded-full">
+                Product Updates
+              </span>
+            </div>
+            
+            {/* Main headline */}
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 tracking-tight">
               Product updates
-            </motion.h1>
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-lg text-muted-foreground"
-            >
+            </h1>
+            
+            {/* Subheadline */}
+            <p className="text-lg text-muted-foreground">
               What's new in CleanProof.
-            </motion.p>
+            </p>
           </div>
         </section>
 
