@@ -60,14 +60,14 @@ const UpdateCard = ({ update }: { update: Update }) => {
   return (
     <motion.div
       layout
-      className="bg-card border border-border/50 rounded-xl overflow-hidden transition-shadow duration-300 hover:shadow-elevated cursor-pointer"
+      className="bg-card border border-border/40 rounded-xl overflow-hidden transition-all duration-200 hover:shadow-elevated cursor-pointer"
       whileHover={{ scale: 1.01 }}
       onClick={() => setIsExpanded(!isExpanded)}
     >
       <div className="p-6 md:p-8">
         <div className="flex items-start justify-between gap-4">
           <div className="flex-1">
-            <p className="text-sm text-muted-foreground mb-2">{update.date}</p>
+            <p className="text-sm text-muted-foreground/70 mb-2">{update.date}</p>
             <h3 className="text-lg md:text-xl font-semibold text-foreground mb-2">
               {update.title}
             </h3>
@@ -78,9 +78,9 @@ const UpdateCard = ({ update }: { update: Update }) => {
           <motion.div
             animate={{ rotate: isExpanded ? 180 : 0 }}
             transition={{ duration: 0.2 }}
-            className="mt-1"
+            className="mt-1 flex-shrink-0"
           >
-            <ChevronDown className="w-5 h-5 text-muted-foreground" />
+            <ChevronDown className="w-5 h-5 text-muted-foreground/60" />
           </motion.div>
         </div>
 
@@ -93,8 +93,8 @@ const UpdateCard = ({ update }: { update: Update }) => {
               transition={{ duration: 0.3, ease: "easeInOut" }}
               className="overflow-hidden"
             >
-              <div className="pt-6 mt-6 border-t border-border/50">
-                <p className="text-xs text-muted-foreground/60 mb-4 uppercase tracking-wide">
+              <div className="pt-6 mt-6 border-t border-border/40">
+                <p className="text-xs text-muted-foreground/50 mb-4 uppercase tracking-wide">
                   {update.date}
                 </p>
                 <div className="space-y-4">
@@ -109,8 +109,8 @@ const UpdateCard = ({ update }: { update: Update }) => {
                 </div>
                 
                 {update.hasImage && (
-                  <div className="mt-6 rounded-lg bg-muted/30 border border-border/30 aspect-video flex items-center justify-center">
-                    <p className="text-sm text-muted-foreground/50">Image placeholder</p>
+                  <div className="mt-6 rounded-lg bg-muted/20 border border-border/30 aspect-video flex items-center justify-center">
+                    <p className="text-sm text-muted-foreground/40">Image placeholder</p>
                   </div>
                 )}
               </div>
@@ -171,37 +171,35 @@ const ProductUpdatesPage = () => {
       </motion.header>
 
       <main>
-        {/* Compact Hero */}
-        <section className="relative pt-32 pb-16 overflow-hidden bg-[hsl(210_40%_98%)]">
-          {/* Subtle grid pattern */}
+        {/* Hero Section - Matching Pricing page */}
+        <section className="relative flex items-center justify-center overflow-hidden bg-gradient-to-b from-primary/[0.06] to-background pt-28 pb-16">
+          {/* Grid overlay - matching pricing page */}
           <div 
-            className="absolute inset-0 opacity-[0.04]"
+            className="absolute inset-0 opacity-[0.03]"
             style={{
-              backgroundImage: `linear-gradient(to right, hsl(var(--foreground)) 1px, transparent 1px),
-                               linear-gradient(to bottom, hsl(var(--foreground)) 1px, transparent 1px)`,
-              backgroundSize: '60px 60px'
+              backgroundImage: `linear-gradient(hsl(var(--foreground)) 1px, transparent 1px),
+                               linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)`,
+              backgroundSize: '80px 80px'
             }}
           />
           
           {/* Bottom edge divider */}
           <div className="absolute bottom-0 left-0 right-0 h-px bg-border/30" />
           
-          <div className="relative max-w-3xl mx-auto px-6 text-center">
-            {/* Category label */}
-            <div className="mb-6">
-              <span className="inline-block px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.15em] text-primary bg-primary/10 rounded-full">
-                Product Updates
-              </span>
-            </div>
+          <div className="relative z-10 max-w-xl mx-auto px-6 text-center">
+            {/* Eyebrow label - pill style matching Pricing */}
+            <p className="text-primary text-sm uppercase tracking-[0.25em] mb-6">
+              Product Updates
+            </p>
             
-            {/* Main headline */}
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 tracking-tight">
+            {/* Main headline - matching Pricing size and weight */}
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold leading-[1.15] tracking-tight text-foreground mb-5">
               Product updates
             </h1>
             
-            {/* Subheadline */}
-            <p className="text-lg text-muted-foreground">
-              What's new in CleanProof.
+            {/* Subheadline with accent */}
+            <p className="text-muted-foreground text-base max-w-md mx-auto">
+              What's new in <span className="text-primary">CleanProof</span>.
             </p>
           </div>
         </section>
