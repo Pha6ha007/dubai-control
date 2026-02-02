@@ -10,6 +10,7 @@ import PricingPage from "./pages/PricingPage";
 import ProductUpdatesPage from "./pages/ProductUpdatesPage";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
+import Analytics from "./pages/Analytics";
 import Jobs from "./pages/Jobs";
 import JobDetails from "./pages/JobDetails";
 import CreateJob from "./pages/CreateJob";
@@ -40,6 +41,7 @@ const App = () => (
             {/* Protected routes with sidebar layout */}
             <Route element={<AppLayout />}>
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/analytics" element={<Analytics />} />
               <Route path="/jobs" element={<Jobs />} />
               <Route path="/jobs/:id" element={<JobDetails />} />
               <Route path="/create-job" element={<CreateJob />} />
