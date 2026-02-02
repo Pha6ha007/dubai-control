@@ -2,6 +2,7 @@ import { NavLink, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import {
   LayoutDashboard,
+  BarChart3,
   Briefcase,
   MapPin,
   Settings,
@@ -10,6 +11,7 @@ import {
 
 const navigation = [
   { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
+  { name: "Analytics", href: "/analytics", icon: BarChart3 },
   { name: "Jobs", href: "/jobs", icon: Briefcase },
   { name: "Locations", href: "/locations", icon: MapPin },
   { name: "Settings", href: "/settings", icon: Settings },
